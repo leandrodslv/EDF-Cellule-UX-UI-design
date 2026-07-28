@@ -44,29 +44,36 @@
         "files": {
           "plan": "./cerveau/05-Archives/eclipse/00-plan-recherche.md",
           "questionnaire": "./cerveau/05-Archives/eclipse/01-questionnaire.md",
-          "guide": null,
+          "guide": "./cerveau/05-Archives/eclipse/02-guide-entretien.md",
           "notes_folder": "./cerveau/05-Archives/eclipse/03-entretiens",
-          "synthese": null,
+          "synthese": "./cerveau/05-Archives/eclipse/04-synthese.md",
           "insights_folder": "./cerveau/05-Archives/eclipse/05-insights",
-          "rapport": null
+          "rapport": "./cerveau/05-Archives/eclipse/06-rapport-final.md"
         },
         "connaissances_produites": [
           "./cerveau/03-Connaissances/N001 · La valeur est reconnue mais l'offre n'est pas lisible.md",
           "./cerveau/03-Connaissances/N002 · La nomenclature des paliers ne permet pas de les distinguer.md",
-          "./cerveau/03-Connaissances/N003 · L'engagement annuel sans alternative mensuelle freine la conversion.md"
+          "./cerveau/03-Connaissances/N003 · L'engagement annuel sans alternative mensuelle freine la conversion.md",
+          "./cerveau/03-Connaissances/N004 · L'absence d'infrastructure d'achat B2B exclut les acheteurs en entreprise.md",
+          "./cerveau/03-Connaissances/N005 · Les signaux de crédibilité professionnelle manquent sur la page de tarification.md"
         ],
-        "migration_pending": "./cerveau/00-Inbox/_migration-notion.md"
+        "migration_notion": {
+          "status": "done",
+          "date": "2026-07-28",
+          "note": "./cerveau/00-Inbox/_migration-notion.md",
+          "pending_human_action": "Supprimer les pages Notion source"
+        }
       },
 
       "interviews": [
-        {"number": 1, "participant": "#002", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 2, "participant": "#011", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 3, "participant": "#015", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 4, "participant": "#006", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 5, "participant": "#013", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 6, "participant": "#010", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 7, "participant": "#004", "date": "2026-04-20", "status": "done", "note_path": null},
-        {"number": 8, "participant": "#008", "date": "2026-04-20", "status": "done", "note_path": null}
+        {"number": 1, "participant": "#002", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E01 · #002.md"},
+        {"number": 2, "participant": "#011", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E02 · #011.md"},
+        {"number": 3, "participant": "#015", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E03 · #015.md"},
+        {"number": 4, "participant": "#006", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E04 · #006.md"},
+        {"number": 5, "participant": "#013", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E05 · #013.md"},
+        {"number": 6, "participant": "#010", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E06 · #010.md"},
+        {"number": 7, "participant": "#004", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E07 · #004.md"},
+        {"number": 8, "participant": "#008", "date": "2026-04-20", "status": "done", "note_path": "./cerveau/05-Archives/eclipse/03-entretiens/E08 · #008.md"}
       ],
 
       "plan": {

@@ -17,7 +17,7 @@ Moteur **Claude Code**. Tout vit sur ce disque — rien n'est publié en ligne.
 
 | Domaine | Connaissances | Études | Dernière activité |
 |---|---|---|---|
-| [[Tarification]] | 3 | 1 | 2026-04-27 |
+| [[Tarification]] | 5 | 1 | 2026-04-20 |
 
 → Toutes les connaissances : `03-Connaissances/`
 
@@ -41,9 +41,9 @@ Aucune étude active.
 
 ## À traiter
 
-- [[_migration-notion]] — les livrables rédactionnels d'Eclipse sont encore
-  dans Notion. Tant qu'ils n'y sont pas, les connaissances du domaine
-  Tarification plafonnent à `moyenne`.
+- **Supprimer les pages Notion d'Eclipse.** Le contenu a été migré ici le
+  2026-07-28 — voir [[_migration-notion]]. Tant que les pages existent, les
+  données de recherche vivent à deux endroits, dont un hors du périmètre EDF.
 
 ---
 

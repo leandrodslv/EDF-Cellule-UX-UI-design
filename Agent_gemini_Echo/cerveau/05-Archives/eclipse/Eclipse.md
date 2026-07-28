@@ -7,7 +7,7 @@ date-debut: 2026-04-20
 date-fin-estimee: 2026-05-10
 entretiens-prevus: 8
 entretiens-realises: 8
-connaissances-produites: 3
+connaissances-produites: 5
 tags:
   - uxr
   - projet
@@ -22,6 +22,8 @@ Domaine : [[Tarification]]
 > - [[N001 · La valeur est reconnue mais l'offre n'est pas lisible]]
 > - [[N002 · La nomenclature des paliers ne permet pas de les distinguer]]
 > - [[N003 · L'engagement annuel sans alternative mensuelle freine la conversion]]
+> - [[N004 · L'absence d'infrastructure d'achat B2B exclut les acheteurs en entreprise]]
+> - [[N005 · Les signaux de crédibilité professionnelle manquent sur la page de tarification]]
 >
 > C'est là qu'il faut chercher avant de lancer une nouvelle étude sur la
 > tarification — pas dans le rapport final.
@@ -76,12 +78,10 @@ Sélectionnés parmi les répondants au questionnaire :
 | 0 · Cadrage | [[00-plan-recherche]] | ✅ |
 | S1 · Questionnaire | [[01-questionnaire]] | ✅ |
 | S2 · Analyse réponses | [analyse](fichiers/eclipse-analyse.xlsx) | ✅ |
-| 1 · Préparation | `02-guide-entretien.md` | ⏳ à importer |
-| 2 · Terrain | `03-entretiens/` | ⏳ à importer |
-| 3 · Analyse | `04-synthese.md` · `05-insights/` | ⏳ à importer |
-| 4 · Rapport | `06-rapport-final.md` | ⏳ à importer |
+| 1 · Préparation | [[02-guide-entretien]] | ✅ |
+| 2 · Terrain | `03-entretiens/` — 8 notes | ✅ |
+| 3 · Analyse | [[04-synthese]] · `05-insights/` — 5 insights | ✅ |
+| 4 · Rapport | [[06-rapport-final]] | ✅ |
 
-> [!warning] Migration incomplète
-> Les livrables rédactionnels d'Eclipse (guide, verbatims, synthèse, rapport)
-> ont été produits dans Notion avant la bascule vers ce vault. Leur contenu
-> n'est pas encore ici — voir [[_migration-notion]].
+Migration depuis Notion effectuée le 2026-07-28. Verbatims recopiés sans
+retouche.

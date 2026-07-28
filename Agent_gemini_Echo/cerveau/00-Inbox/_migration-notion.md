@@ -8,68 +8,58 @@ tags:
 
 # Migration Notion → vault Obsidian
 
-ECHO n'utilise plus Notion. Tous les nouveaux projets sont écrits directement
-ici, sur le disque.
-
-**Ce qui reste à faire** ne concerne que le projet [[Eclipse]], produit avant
-la bascule : son contenu rédactionnel est encore dans Notion et personne ne
-peut le récupérer à ta place.
+**Migration effectuée le 28 juillet 2026.** ECHO n'utilise plus Notion.
 
 ---
 
-## Ce qui est déjà migré
+## Ce qui a été migré
 
-- La note maîtresse du projet et ses propriétés
-- Le plan de recherche
-- Le questionnaire et ses trois fichiers Excel
-- Les résultats chiffrés du volet quantitatif
-
-## Ce qui manque
-
-| Livrable | Où il se trouve encore |
+| Livrable | Destination |
 |---|---|
-| Guide d'entretien | Notion → Préparation entretien |
-| 8 notes d'entretien (verbatims) | Notion → Notes brutes |
-| Synthèse et insights | Notion → Synthèse & insights |
-| Rapport final | Notion → Rapport final |
+| Préparation entretien | [[02-guide-entretien]] |
+| 8 notes d'entretien | `05-Archives/eclipse/03-entretiens/` |
+| Synthèse & insights | [[04-synthese]] + 5 notes dans `05-insights/` |
+| Rapport final | [[06-rapport-final]] |
+| Questionnaire et fichiers Excel | `05-Archives/eclipse/fichiers/` |
 
-Pages Notion concernées :
+Les verbatims ont été recopiés **sans retouche**. Les scores questionnaire de
+chaque participant (clarté, valeur, usage) sont conservés en propriétés YAML sur
+les notes d'entretien.
+
+Cinq connaissances ont été distillées dans [[Tarification]] —
+[[N001 · La valeur est reconnue mais l'offre n'est pas lisible]] à
+[[N005 · Les signaux de crédibilité professionnelle manquent sur la page de tarification]].
+
+---
+
+## Ce qui reste à faire — action humaine
+
+> [!warning] Supprimer les pages Notion
+> Tant qu'elles existent, les données de recherche vivent à deux endroits, dont
+> un hors du périmètre EDF. C'est précisément ce que la bascule visait à éviter.
+
+Pages à supprimer une fois la vérification faite :
 
 - Carte projet — `https://www.notion.so/3483ac656c1c81529015d9c737e0d932`
 - Préparation — `https://www.notion.so/3483ac656c1c811c8b67c0abf58d2738`
-- Notes brutes — `https://www.notion.so/3483ac656c1c818582bacc13a3712418`
+- Notes brutes (et ses 8 sous-pages) — `https://www.notion.so/3483ac656c1c818582bacc13a3712418`
 - Synthèse — `https://www.notion.so/3483ac656c1c81b6be52d67a74589609`
 - Rapport — `https://www.notion.so/3483ac656c1c8131879ef708cfdabd20`
+- Analyse questionnaire S2 — `https://www.notion.so/3483ac656c1c813bb6ddeda673b08b52`
+
+**Vérifie d'abord** que le contenu est bien ici : ouvre [[Eclipse]] et parcours
+les six livrables. La suppression dans Notion reste réversible 30 jours via la
+corbeille, mais autant ne pas avoir à y revenir.
 
 ---
 
-## Comment récupérer le contenu
+## Une page non reprise
 
-1. Ouvre la page dans Notion
-2. Menu `···` en haut à droite → **Exporter**
-3. Format **Markdown & CSV**, sans les sous-pages si tu exportes page par page
-4. Dézippe et place les fichiers ici :
-
-| Contenu exporté | Destination dans le vault |
-|---|---|
-| Préparation entretien | `eclipse/02-guide-entretien.md` |
-| Une note par entretien | `eclipse/03-entretiens/E01 · #002.md`, etc. |
-| Synthèse | `eclipse/04-synthese.md` |
-| Chaque insight | `eclipse/05-insights/I01 · [titre].md` |
-| Rapport | `eclipse/06-rapport-final.md` |
-
-5. Ajoute à chaque fichier son bloc de propriétés YAML — les formats exacts
-   sont dans `references/obsidian-structure.md`
-
-Une fois les fichiers déposés, dis-le à ECHO : il ajoutera les propriétés,
-les liens `[[…]]` entre insights et entretiens, et mettra à jour
-`uxr-state.json`. C'est la partie qu'il peut faire seul.
+L'annexe « Analyse questionnaire S2 » du rapport Notion n'a pas été migrée :
+son contenu chiffré figure déjà dans [[01-questionnaire]] et dans le fichier
+`eclipse-analyse.xlsx`. Vérifie qu'elle ne contient rien d'autre avant de la
+supprimer.
 
 ---
 
-## Après la migration
-
-Vérifie que le contenu est bien arrivé, puis **supprime les pages Notion**.
-Tant qu'elles existent, les données de recherche vivent à deux endroits dont
-un hors du périmètre EDF — c'est précisément ce que la bascule vers Obsidian
-visait à éviter.
+Cette note pourra être supprimée une fois les pages Notion effacées.
