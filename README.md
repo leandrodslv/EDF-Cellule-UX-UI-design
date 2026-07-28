@@ -6,6 +6,188 @@ utilisateur de A à Z — cadrage, questionnaire, entretiens, analyse, rapport.
 ECHO existe en **deux implémentations indépendantes**, une par moteur.
 Même méthode, même personnalité, même pipeline — seule la plomberie change.
 
+> **Tu débutes ?** Va directement à [Installation depuis zéro](#installation-depuis-zéro).
+> Compte 20 à 30 minutes la première fois. Aucune connaissance en code n'est
+> nécessaire : tu vas taper des commandes, pas en écrire.
+
+---
+
+## Installation depuis zéro
+
+Ce guide part du principe que rien n'est installé sur ta machine.
+Suis les étapes dans l'ordre — chacune dépend de la précédente.
+
+### Étape 0 · Ouvrir un terminal
+
+Tout se passe dans un terminal. C'est une fenêtre où l'on tape des commandes.
+
+- **Windows** — touche `Windows`, tape `Terminal`, ouvre **Windows Terminal**
+  (ou **PowerShell**)
+- **macOS** — `Cmd + Espace`, tape `Terminal`, Entrée
+
+Garde-le ouvert, tout le reste s'y passe. Après chaque installation, **ferme et
+rouvre le terminal** : c'est ce qui lui permet de découvrir les nouveaux outils.
+
+---
+
+### Étape 1 · Les outils de base
+
+Trois briques sont nécessaires quel que soit l'agent choisi : **Node.js**
+(fait tourner les CLI), **Git** (récupère et versionne le dépôt) et **Python**
+(génère les fichiers Excel des questionnaires).
+
+**Sur Windows** — copie-colle ces trois lignes une par une :
+
+```powershell
+winget install OpenJS.NodeJS.LTS
+winget install Git.Git
+winget install Python.Python.3.12
+```
+
+**Sur macOS** — installe d'abord [Homebrew](https://brew.sh) si tu ne l'as pas,
+puis :
+
+```bash
+brew install node git python
+```
+
+Ferme et rouvre le terminal, puis vérifie que tout répond :
+
+```bash
+node --version      # doit afficher v20.x ou plus
+git --version
+python --version    # macOS : essaie python3 --version
+```
+
+> ⚠️ **Piège classique sur Windows** — si `python --version` ouvre le Microsoft
+> Store ou affiche *« Python was not found »*, c'est que Windows intercepte la
+> commande avec un raccourci fantôme. Correction :
+> **Paramètres → Applications → Paramètres avancés des applications →
+> Alias d'exécution d'application** → désactive `python.exe` et `python3.exe`.
+> Ferme et rouvre le terminal.
+
+---
+
+### Étape 2 · La bibliothèque Excel
+
+ECHO génère les questionnaires au format Microsoft Forms. Il lui faut `openpyxl` :
+
+```bash
+pip install openpyxl
+```
+
+Sur macOS, si `pip` n'est pas reconnu, utilise `pip3 install openpyxl`.
+
+Sans cette étape, tout fonctionne **sauf** la génération des `.xlsx` (Phase S1).
+
+---
+
+### Étape 3 · Récupérer le dépôt
+
+```bash
+git clone https://github.com/leandrodslv/EDF-Cellule-UX-UI-design.git
+cd EDF-Cellule-UX-UI-design
+```
+
+Le dépôt est **privé** : Git te demandera de t'authentifier sur GitHub.
+Si tu n'as pas accès, demande à être ajouté comme collaborateur.
+
+---
+
+### Étape 4 · Installer l'agent de ton choix
+
+Tu n'as besoin **que d'un seul** des deux. Si tu hésites, prends celui pour
+lequel la cellule a déjà un compte.
+
+#### Option A — Claude Code
+
+```bash
+npm install -g @anthropic-ai/claude-code
+cd claude-code
+claude
+```
+
+Au premier lancement, Claude ouvre ton navigateur pour la connexion.
+Il faut un **compte Claude** (Pro, Max ou Team) ou une clé API Anthropic.
+
+#### Option B — Gemini CLI
+
+```bash
+npm install -g @google/gemini-cli
+cd gemini
+gemini
+```
+
+Au premier lancement, choisis **« Login with Google »** et connecte-toi avec
+ton compte Google — c'est gratuit et suffisant pour ECHO. Une clé API
+[Google AI Studio](https://aistudio.google.com/apikey) fonctionne aussi.
+
+> 🔴 **L'erreur à ne pas faire** — lance toujours le CLI **depuis le dossier
+> de l'agent** (`claude-code/` ou `gemini/`), jamais depuis la racine du dépôt.
+> Les deux outils cherchent leur fichier de contexte à partir du dossier
+> courant : lancés d'ailleurs, tu obtiendras un assistant générique et **ECHO
+> ne se réveillera pas**.
+
+---
+
+### Étape 5 · Connecter Notion
+
+ECHO écrit tous ses livrables dans Notion. Sans cette étape il fonctionne
+quand même, mais il produira des fichiers Markdown en local au lieu d'alimenter
+l'espace de travail de la cellule.
+
+**Côté Claude Code** — une seule fois, depuis `claude-code/` :
+
+```bash
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+```
+
+Puis, dans Claude, tape `/mcp` et suis l'autorisation dans le navigateur.
+
+**Côté Gemini CLI** — le serveur est déjà déclaré dans `.gemini/settings.json`,
+il n'y a rien à ajouter. Dans Gemini, tape :
+
+```
+/mcp auth notion
+```
+
+Dans les deux cas, une page Notion s'ouvre et te demande d'autoriser l'accès.
+Ton compte doit avoir accès à l'espace de travail de la cellule.
+
+---
+
+### Étape 6 · Vérifier que tout est en place
+
+Depuis le dossier de ton agent, lance-le et tape `/go`.
+
+Si tout est correct, ECHO affiche le tableau de bord du projet Eclipse et te
+propose une prochaine étape. **C'est le signe que l'installation est bonne.**
+
+Récapitulatif de contrôle :
+
+| Vérification | Commande | Attendu |
+|---|---|---|
+| Node.js | `node --version` | `v20.x` ou plus |
+| Git | `git --version` | un numéro de version |
+| Python | `python --version` | `3.10` ou plus |
+| openpyxl | `pip show openpyxl` | une fiche, pas une erreur |
+| L'agent | `claude` ou `gemini` | l'interface s'ouvre |
+| Notion | `/mcp` dans l'agent | serveur `notion` connecté |
+| ECHO | `/go` dans l'agent | le dashboard Eclipse s'affiche |
+
+---
+
+### En cas de blocage
+
+| Symptôme | Cause probable | Correction |
+|---|---|---|
+| `command not found` après une install | Le terminal n'a pas rechargé le PATH | Ferme et rouvre le terminal |
+| `python` ouvre le Microsoft Store | Alias d'exécution Windows | Voir le piège de l'étape 1 |
+| `EACCES` / permission refusée sur `npm -g` | Droits d'écriture globaux | macOS/Linux : préfixe par `sudo`. Windows : ouvre le terminal en administrateur |
+| ECHO répond comme un assistant générique | Lancé depuis le mauvais dossier | `cd claude-code` ou `cd gemini`, puis relance |
+| Les outils `notion-*` sont absents | MCP non autorisé | Refais l'étape 5 |
+| `git clone` refusé | Pas d'accès au dépôt privé | Demande à être ajouté comme collaborateur |
+
 ---
 
 ## Choisir son agent
@@ -109,7 +291,8 @@ mène ses propres recherches. Ne cherche pas à les synchroniser.
 
 Projet UXR complet et terminé, mode `mixed` (questionnaire + entretiens) :
 200 réponses au questionnaire, 8 entretiens, analyse et rapport livrés.
-Sert d'exemple de bout en bout dans `projets/eclipse/`.
+Sert d'exemple de bout en bout, présent à l'identique dans
+`claude-code/projets/eclipse/` et `gemini/projets/eclipse/`.
 
 Les données participants sont **anonymisées** (identifiants `#001` à `#200`,
 aucun nom, aucune donnée personnelle).

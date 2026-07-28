@@ -7,6 +7,11 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
 
 ## Installation
 
+> **Tu pars de zéro (pas de Node, pas de Python, pas de Git) ?**
+> Suis le guide complet du [README racine](../README.md#installation-depuis-zéro),
+> il couvre Windows et macOS étape par étape. La procédure ci-dessous suppose
+> que les outils de base sont déjà en place.
+
 1. Installe Gemini CLI :
    ```
    npm install -g @google/gemini-cli
