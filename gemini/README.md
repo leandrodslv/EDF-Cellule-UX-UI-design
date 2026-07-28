@@ -16,9 +16,9 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
 3. Lance `gemini`
 4. Gemini lit automatiquement `GEMINI.md` au démarrage — ECHO est en place
 
-> Les livrables projet (`.xlsx`) sont écrits dans `../projets/[nom-projet]/`,
-> un dossier partagé avec l'agent Claude Code. Il est déjà déclaré dans
-> `.gemini/settings.json` via `context.includeDirectories`.
+> Cet agent est autonome : il ne lit et n'écrit **rien** en dehors de `gemini/`.
+> Ses livrables vont dans `projets/[nom-projet]/`. Tu peux copier ce seul
+> dossier ailleurs, il fonctionnera tel quel.
 
 ---
 
@@ -117,6 +117,12 @@ gemini/                                ← lance `gemini` DEPUIS ce dossier
 │       └── go.toml                    ← commande /go
 ├── scripts/
 │   └── generate_analysis.py           ← génération des analyses .xlsx
+├── projets/                           ← TES livrables (propres à cet agent)
+│   └── eclipse/
+│       ├── eclipse-questionnaire.xlsx
+│       ├── eclipse-responses.xlsx
+│       ├── eclipse-analyse.xlsx
+│       └── generate_eclipse_*.py
 └── references/
     ├── state-schema.md                ← schéma JSON de l'état
     ├── guide-template.md              ← template Phase 1 (préparation)

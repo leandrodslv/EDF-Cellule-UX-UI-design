@@ -27,8 +27,8 @@
 
       "survey": {
         "status": "done",
-        "excel_path": "../projets/eclipse/eclipse-questionnaire.xlsx",
-        "analysis_path": "../projets/eclipse/eclipse-analyse.xlsx",
+        "excel_path": "./projets/eclipse/eclipse-questionnaire.xlsx",
+        "analysis_path": "./projets/eclipse/eclipse-analyse.xlsx",
         "forms_url": "https://forms.microsoft.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__kNTKAVUOUNLRk9GRzA4WTc3OFpHQzVDTVJCWUxVTy4u",
         "responses_received": 200,
         "responses_target": 200,

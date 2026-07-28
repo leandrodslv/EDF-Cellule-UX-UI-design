@@ -7,7 +7,6 @@
     }
   },
   "context": {
-    "fileName": "GEMINI.md",
-    "includeDirectories": ["../projets"]
+    "fileName": "GEMINI.md"
   }
 }

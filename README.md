@@ -18,9 +18,12 @@ Même méthode, même personnalité, même pipeline — seule la plomberie chang
 | Config MCP | `claude mcp add …` | `.gemini/settings.json` |
 | Lancement | `cd claude-code && claude` | `cd gemini && gemini` |
 
-Les deux sont **autonomes** : chacun embarque ses propres `references/`,
-`scripts/` et `uxr-state.json`. Tu peux en partager un seul à un collègue,
-il fonctionnera sans le reste du dépôt.
+Les deux agents sont **totalement étanches**. Chacun embarque ses propres
+`references/`, `scripts/`, `uxr-state.json` **et `projets/`**. Aucun fichier
+n'est partagé, aucun chemin ne traverse d'un dossier à l'autre.
+
+Concrètement : tu peux copier `gemini/` seul sur une clé USB et le donner à un
+collègue — il fonctionnera tel quel, sans le reste du dépôt.
 
 > **Important** — lance toujours le CLI *depuis le dossier de l'agent*, jamais
 > depuis la racine. Les deux outils cherchent leur fichier de contexte à partir
@@ -32,53 +35,56 @@ il fonctionnera sans le reste du dépôt.
 
 ```
 EDF-Cellule-UX-UI-design/
-├── README.md                  ← ce fichier
+├── README.md                      ← ce fichier
 │
-├── claude-code/               ← agent ECHO · moteur Claude Code
+├── claude-code/                   ← agent ECHO · moteur Claude Code
 │   ├── CLAUDE.md
 │   ├── .claude/commands/go.md
 │   ├── references/
 │   ├── scripts/
+│   ├── projets/                   ← SES livrables
+│   │   └── eclipse/
 │   ├── uxr-state.json
-│   └── README.md              ← setup détaillé
+│   └── README.md                  ← setup détaillé
 │
-├── gemini/                    ← agent ECHO · moteur Gemini CLI
-│   ├── GEMINI.md
-│   ├── .gemini/
-│   │   ├── settings.json
-│   │   └── commands/go.toml
-│   ├── references/
-│   ├── scripts/
-│   ├── uxr-state.json
-│   └── README.md              ← setup détaillé
-│
-└── projets/                   ← livrables, partagés entre les deux agents
-    └── eclipse/
-        ├── eclipse-questionnaire.xlsx
-        ├── eclipse-responses.xlsx
-        ├── eclipse-analyse.xlsx
-        └── generate_eclipse_*.py
+└── gemini/                        ← agent ECHO · moteur Gemini CLI
+    ├── GEMINI.md
+    ├── .gemini/
+    │   ├── settings.json
+    │   └── commands/go.toml
+    ├── references/
+    ├── scripts/
+    ├── projets/                   ← SES livrables
+    │   └── eclipse/
+    ├── uxr-state.json
+    └── README.md                  ← setup détaillé
 ```
+
+Rien à la racine à part ce README : tout le contenu vit dans l'un ou l'autre
+des deux agents.
 
 ---
 
-## Pourquoi `projets/` est partagé
+## Conséquence à connaître
 
-Les livrables appartiennent au projet de recherche, pas au moteur qui les a
-produits. Un questionnaire généré côté Gemini doit rester exploitable côté
-Claude Code — et inversement. C'est le seul point de contact entre les deux
-agents, et il est volontaire.
+Les deux agents ne se voient pas. Un questionnaire généré côté Gemini
+**n'apparaîtra pas** côté Claude Code, et sa mémoire (`uxr-state.json`)
+non plus.
 
-Côté Gemini, ce dossier est déclaré dans `.gemini/settings.json`
-(`context.includeDirectories`) car Gemini CLI restreint par défaut ses accès
-fichiers au dossier de lancement.
+En pratique : **choisis un moteur par projet de recherche et tiens-t'y**.
+Si tu veux basculer un projet en cours d'un agent à l'autre, il faut copier
+à la main son dossier `projets/[nom]/` et son entrée dans `uxr-state.json`.
+
+Le projet Eclipse est présent dans les deux, à l'identique, comme exemple
+de référence.
 
 ---
 
 ## Maintenir les deux en parallèle
 
-`references/` est dupliqué dans chaque agent — c'est le prix de l'autonomie.
-**Si tu modifies un template, reporte-le dans les deux dossiers.**
+`references/` et `scripts/` sont dupliqués dans chaque agent — c'est le prix
+de l'étanchéité. **Si tu modifies un template, reporte-le dans les deux
+dossiers.**
 
 Vérifier qu'ils n'ont pas divergé :
 
@@ -93,6 +99,9 @@ diff -r claude-code/scripts    gemini/scripts
 de vérification du MCP diffèrent entre les deux CLI (`/mcp` côté Claude Code,
 `/mcp list` + `/mcp auth notion` côté Gemini). C'est la seule divergence
 légitime — toute autre différence est une dérive à corriger.
+
+`projets/` en revanche **doit** diverger dès que tu travailles : chaque agent
+mène ses propres recherches. Ne cherche pas à les synchroniser.
 
 ---
 

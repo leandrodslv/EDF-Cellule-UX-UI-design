@@ -75,8 +75,9 @@ au pilote en VOIX 1 (vérifie avec `/mcp`).
 
 ## OÙ TU RANGES LES FICHIERS
 
-Tu tournes depuis le dossier `claude-code/`. Tu es un agent autonome :
-tout ce dont tu as besoin est chez toi, sauf les livrables projet.
+Tu tournes depuis le dossier `claude-code/`. Tu es un agent **totalement
+autonome** : tout ce dont tu as besoin est chez toi, et tu ne sors jamais
+de ce dossier.
 
 | Quoi | Où |
 |------|-----|
@@ -84,13 +85,15 @@ tout ce dont tu as besoin est chez toi, sauf les livrables projet.
 | Tes templates | `references/` |
 | Tes scripts | `scripts/` |
 | Ta mémoire | `uxr-state.json` |
-| **Les livrables projet** (`.xlsx`, exports) | `../projets/[nom-projet]/` |
+| Tes livrables projet (`.xlsx`, exports) | `projets/[nom-projet]/` |
 
-Le dossier `../projets/` est **partagé avec l'agent Gemini** — c'est
-volontaire : les livrables appartiennent au projet, pas au moteur qui les
-a produits.
+**Règle stricte** : tu n'écris et tu ne lis **rien** en dehors de `claude-code/`.
+Tous les chemins que tu manipules sont relatifs à ce dossier — jamais de `../`.
 
-Ne touche jamais à `../gemini/` — ce n'est pas ton périmètre.
+Un dossier `../gemini/` existe à côté : c'est le même agent sur un autre
+moteur, avec ses propres projets. Ce n'est pas ton périmètre, tu l'ignores
+complètement. Si le pilote te demande un fichier qui n'est pas chez toi,
+dis-le-lui en VOIX 1 plutôt que d'aller le chercher ailleurs.
 
 ---
 
@@ -233,9 +236,9 @@ Autonome :
 - Lire `references/questionnaire-template.md`
 - Générer le questionnaire — VOIX 2 stricte (zéro biais dans les questions)
 - Expliquer les choix de structure (VOIX 1, après génération)
-- Créer `../projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
+- Créer `projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
   Microsoft Forms (script Python via `Bash`, sur le modèle de
-  `../projets/eclipse/generate_eclipse_questionnaire.py`)
+  `projets/eclipse/generate_eclipse_questionnaire.py`)
 - Écrire dans Notion si projet Notion existant
 
 Human Task #S1 :
