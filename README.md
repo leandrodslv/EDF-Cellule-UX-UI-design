@@ -131,29 +131,41 @@ ton compte Google — c'est gratuit et suffisant pour ECHO. Une clé API
 
 ---
 
-### Étape 5 · Connecter Notion
+### Étape 5 · Installer Obsidian
 
-ECHO écrit tous ses livrables dans Notion. Sans cette étape il fonctionne
-quand même, mais il produira des fichiers Markdown en local au lieu d'alimenter
-l'espace de travail de la cellule.
+ECHO écrit tous ses livrables dans un **vault Obsidian** : le dossier `projets/`
+de ton agent. Un vault n'est rien d'autre qu'un dossier de fichiers Markdown
+sur ton disque — Obsidian ne fait que le rendre navigable.
 
-**Côté Claude Code** — une seule fois, depuis `Agent_claude-code_Echo/` :
+**Sur Windows** :
+
+```powershell
+winget install Obsidian.Obsidian
+```
+
+**Sur macOS** :
 
 ```bash
-claude mcp add --transport http notion https://mcp.notion.com/mcp
+brew install --cask obsidian
 ```
 
-Puis, dans Claude, tape `/mcp` et suis l'autorisation dans le navigateur.
+Puis, au lancement : **Ouvrir un dossier comme vault** → sélectionne le dossier
+`projets/` de ton agent.
 
-**Côté Gemini CLI** — le serveur est déjà déclaré dans `.gemini/settings.json`,
-il n'y a rien à ajouter. Dans Gemini, tape :
+> **Cette étape est facultative.** Sans Obsidian, ECHO fonctionne exactement
+> pareil et écrit les mêmes fichiers — tu les liras simplement dans un éditeur
+> de texte. Obsidian apporte la navigation, les liens entre notes et les vues,
+> pas le contenu.
 
-```
-/mcp auth notion
-```
+#### Pourquoi ce choix plutôt qu'un outil en ligne
 
-Dans les deux cas, une page Notion s'ouvre et te demande d'autoriser l'accès.
-Ton compte doit avoir accès à l'espace de travail de la cellule.
+Aucune donnée de recherche ne quitte ton poste : ni compte, ni serveur, ni API,
+ni jeton d'accès. Les verbatims d'entretien restent des fichiers locaux.
+
+Si tu veux sauvegarder et partager avec la cellule, place le vault dans ton
+**OneDrive ou SharePoint EDF** : tu récupères la synchronisation, l'historique
+de versions et les politiques de sécurité du tenant, sans qu'ECHO n'ait besoin
+du moindre accès réseau.
 
 ---
 
@@ -173,7 +185,7 @@ Récapitulatif de contrôle :
 | Python | `python --version` | `3.10` ou plus |
 | openpyxl | `pip show openpyxl` | une fiche, pas une erreur |
 | L'agent | `claude` ou `gemini` | l'interface s'ouvre |
-| Notion | `/mcp` dans l'agent | serveur `notion` connecté |
+| Le vault | ouvrir `projets/` dans Obsidian | `Index.md` et le projet Eclipse apparaissent |
 | ECHO | `/go` dans l'agent | le dashboard Eclipse s'affiche |
 
 ---
@@ -186,7 +198,7 @@ Récapitulatif de contrôle :
 | `python` ouvre le Microsoft Store | Alias d'exécution Windows | Voir le piège de l'étape 1 |
 | `EACCES` / permission refusée sur `npm -g` | Droits d'écriture globaux | macOS/Linux : préfixe par `sudo`. Windows : ouvre le terminal en administrateur |
 | ECHO répond comme un assistant générique | Lancé depuis le mauvais dossier | `cd Agent_claude-code_Echo` ou `cd Agent_gemini_Echo`, puis relance |
-| Les outils `notion-*` sont absents | MCP non autorisé | Refais l'étape 5 |
+| Les propriétés YAML n'apparaissent pas dans Obsidian | Ligne vide avant le bloc `---` | Le `---` doit être la toute première ligne du fichier |
 | `git clone` refusé | Pas d'accès au dépôt privé | Demande à être ajouté comme collaborateur |
 
 ---
@@ -198,7 +210,7 @@ Récapitulatif de contrôle :
 | Dossier | [`Agent_claude-code_Echo/`](Agent_claude-code_Echo/) | [`Agent_gemini_Echo/`](Agent_gemini_Echo/) |
 | Cerveau | `CLAUDE.md` | `GEMINI.md` |
 | Commande | `.claude/commands/go.md` | `.gemini/commands/go.toml` |
-| Config MCP | `claude mcp add …` | `.gemini/settings.json` |
+| Config | `.claude/` | `.gemini/settings.json` |
 | Lancement | `cd Agent_claude-code_Echo && claude` | `cd Agent_gemini_Echo && gemini` |
 
 Les deux agents sont **totalement étanches**. Chacun embarque ses propres
@@ -225,7 +237,9 @@ EDF-Cellule-UX-UI-design/
 │   ├── .claude/commands/go.md
 │   ├── references/
 │   ├── scripts/
-│   ├── projets/                    ← SES livrables
+│   ├── projets/                    ← SON vault Obsidian
+│   │   ├── Index.md
+│   │   ├── _templates/
 │   │   └── eclipse/
 │   ├── uxr-state.json
 │   └── README.md                   ← setup détaillé
@@ -237,7 +251,9 @@ EDF-Cellule-UX-UI-design/
     │   └── commands/go.toml
     ├── references/
     ├── scripts/
-    ├── projets/                    ← SES livrables
+    ├── projets/                    ← SON vault Obsidian
+    │   ├── Index.md
+    │   ├── _templates/
     │   └── eclipse/
     ├── uxr-state.json
     └── README.md                   ← setup détaillé
@@ -276,15 +292,71 @@ diff -r Agent_claude-code_Echo/references Agent_gemini_Echo/references
 diff -r Agent_claude-code_Echo/scripts    Agent_gemini_Echo/scripts
 ```
 
-`scripts/` doit être strictement identique — aucune sortie attendue.
+Les deux doivent être **strictement identiques** — aucune sortie attendue.
 
-`references/` doit être identique **sauf `notion-structure.md`** : les commandes
-de vérification du MCP diffèrent entre les deux CLI (`/mcp` côté Claude Code,
-`/mcp list` + `/mcp auth notion` côté Gemini). C'est la seule divergence
-légitime — toute autre différence est une dérive à corriger.
+Depuis l'abandon de Notion, il n'y a plus aucune divergence légitime entre les
+deux agents sur ces dossiers : la moindre différence est une dérive à corriger.
 
 `projets/` en revanche **doit** diverger dès que tu travailles : chaque agent
 mène ses propres recherches. Ne cherche pas à les synchroniser.
+
+---
+
+## Sécurité des données
+
+### Ce qui a changé
+
+ECHO utilisait Notion, un service tiers hébergé hors du périmètre EDF.
+Il n'en dépend plus. Les livrables sont désormais des fichiers Markdown écrits
+dans un **vault Obsidian** local.
+
+Concrètement, les agents n'ont plus **aucun connecteur réseau** : ni MCP, ni
+API, ni jeton d'accès, ni compte à provisionner. Écrire un livrable revient à
+écrire un fichier sur le disque.
+
+| | Avant (Notion) | Maintenant (Obsidian) |
+|---|---|---|
+| Hébergement des livrables | Serveurs Notion | Disque du poste |
+| Compte tiers requis | Oui | Non |
+| Jeton d'accès à gérer | Oui (OAuth) | Aucun |
+| Accès réseau de l'agent | Oui | **Aucun** |
+| Gouvernance applicable | Celle de Notion | Celle d'EDF, si vault dans OneDrive |
+| Fonctionne hors ligne | Non | Oui |
+
+### Sauvegarde et partage
+
+Un vault local n'est pas sauvegardé. Place le dossier `projets/` dans ton
+**OneDrive ou SharePoint EDF** : tu obtiens la synchronisation, l'historique
+de versions et les politiques de rétention du tenant — sans qu'ECHO n'accède
+lui-même au réseau.
+
+### Règles inscrites dans les agents
+
+Les deux cerveaux interdisent explicitement :
+
+- d'envoyer, publier ou téléverser une donnée de recherche où que ce soit
+- d'écrire un nom, un employeur ou toute donnée identifiante dans un livrable
+  — les participants sont désignés par un identifiant (`#001`, `#002`)
+- d'écrire ou lire quoi que ce soit hors du dossier de l'agent
+
+### Ce qui reste exposé — à savoir
+
+Le stockage est désormais local, **le traitement ne l'est pas**. Quand tu
+transmets des notes d'entretien à ECHO pour analyse, leur contenu est envoyé
+au fournisseur du modèle (Anthropic ou Google) le temps de la requête.
+
+La pseudonymisation systématique des participants limite la portée de cette
+exposition, mais ne la supprime pas. Si la cellule traite un jour des verbatims
+sensibles, c'est ce point — et non le stockage — qu'il faudra instruire avec la
+sécurité EDF.
+
+### Migration en cours
+
+Le projet Eclipse a été produit dans Notion avant la bascule. Sa partie
+rédactionnelle doit encore être exportée : la marche à suivre est dans
+`projets/_migration-notion.md`, dans chaque agent.
+
+Tant que ce n'est pas fait, ces données existent encore chez Notion.
 
 ---
 

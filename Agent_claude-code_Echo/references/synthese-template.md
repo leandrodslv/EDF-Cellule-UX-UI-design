@@ -1,7 +1,8 @@
 # Template — Analyse & Synthèse (Phase 3)
 
-Génère ces livrables après avoir lu toutes les pages Notes brutes dans Notion.
-Écris dans Notion > Synthèse & insights.
+Génère ces livrables après avoir lu toutes les notes de `projets/[nom-projet]/03-entretiens/`.
+Écris la synthèse dans `projets/[nom-projet]/04-synthese.md` et une note par
+insight dans `projets/[nom-projet]/05-insights/` (voir `obsidian-structure.md`).
 
 ## Règle de volume
 - 1 entretien dans les notes → Livrables 1, 2, 3, 4, 7
@@ -147,7 +148,7 @@ Contradictions à résoudre (2+ entretiens) :
 
 **Date d'analyse** : [date]
 **Entretiens analysés** : [N] ([prénoms])
-**Lien Préparation** : [lien Notion vers Préparation entretien]
+**Lien Préparation** : `[[02-guide-entretien]]`
 
 ---
 ```

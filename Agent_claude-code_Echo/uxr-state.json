@@ -27,8 +27,8 @@
 
       "survey": {
         "status": "done",
-        "excel_path": "./projets/eclipse/eclipse-questionnaire.xlsx",
-        "analysis_path": "./projets/eclipse/eclipse-analyse.xlsx",
+        "excel_path": "./projets/eclipse/fichiers/eclipse-questionnaire.xlsx",
+        "analysis_path": "./projets/eclipse/fichiers/eclipse-analyse.xlsx",
         "forms_url": "https://forms.microsoft.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__kNTKAVUOUNLRk9GRzA4WTc3OFpHQzVDTVJCWUxVTy4u",
         "responses_received": 200,
         "responses_target": 200,
@@ -37,28 +37,30 @@
         "recruited_for_interviews": ["#002", "#011", "#015", "#006", "#013", "#010", "#004", "#008"]
       },
 
-      "notion": {
-        "database_id": "3443ac65-6c1c-8072-98f5-c8a4f0b331f5",
-        "card_id": "3483ac65-6c1c-8152-9015-d9c737e0d932",
-        "card_url": "https://www.notion.so/3483ac656c1c81529015d9c737e0d932",
-        "pages": {
-          "questionnaire": "https://www.notion.so/3483ac656c1c81fe980bd28951196849",
-          "preparation": "https://www.notion.so/3483ac656c1c811c8b67c0abf58d2738",
-          "notes_folder": "https://www.notion.so/3483ac656c1c818582bacc13a3712418",
-          "synthese": "https://www.notion.so/3483ac656c1c81b6be52d67a74589609",
-          "rapport": "https://www.notion.so/3483ac656c1c8131879ef708cfdabd20"
-        }
+      "vault": {
+        "folder": "./projets/eclipse",
+        "note": "./projets/eclipse/Eclipse.md",
+        "files": {
+          "plan": "./projets/eclipse/00-plan-recherche.md",
+          "questionnaire": "./projets/eclipse/01-questionnaire.md",
+          "guide": null,
+          "notes_folder": "./projets/eclipse/03-entretiens",
+          "synthese": null,
+          "insights_folder": "./projets/eclipse/05-insights",
+          "rapport": null
+        },
+        "migration_pending": "./projets/_migration-notion.md"
       },
 
       "interviews": [
-        {"number": 1, "participant": "#002", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8131-950e-df71e7146c6a", "notion_page_url": "https://www.notion.so/3483ac656c1c8131950edf71e7146c6a"},
-        {"number": 2, "participant": "#011", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8193-b2d6-e1113e021fa6", "notion_page_url": "https://www.notion.so/3483ac656c1c8193b2d6e1113e021fa6"},
-        {"number": 3, "participant": "#015", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81f5-bdc0-ceb8f6362d71", "notion_page_url": "https://www.notion.so/3483ac656c1c81f5bdc0ceb8f6362d71"},
-        {"number": 4, "participant": "#006", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-811c-bb6f-cfb775d586fb", "notion_page_url": "https://www.notion.so/3483ac656c1c811cbb6fcfb775d586fb"},
-        {"number": 5, "participant": "#013", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-812d-9a3e-c99ed3676db9", "notion_page_url": "https://www.notion.so/3483ac656c1c812d9a3ec99ed3676db9"},
-        {"number": 6, "participant": "#010", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81fa-b138-c4daf5fd1027", "notion_page_url": "https://www.notion.so/3483ac656c1c81fab138c4daf5fd1027"},
-        {"number": 7, "participant": "#004", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81b3-b058-d66f1aadc77e", "notion_page_url": "https://www.notion.so/3483ac656c1c81b3b058d66f1aadc77e"},
-        {"number": 8, "participant": "#008", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8122-8534-fdb5269d1061", "notion_page_url": "https://www.notion.so/3483ac656c1c81228534fdb5269d1061"}
+        {"number": 1, "participant": "#002", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 2, "participant": "#011", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 3, "participant": "#015", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 4, "participant": "#006", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 5, "participant": "#013", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 6, "participant": "#010", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 7, "participant": "#004", "date": "2026-04-20", "status": "done", "note_path": null},
+        {"number": 8, "participant": "#008", "date": "2026-04-20", "status": "done", "note_path": null}
       ],
 
       "plan": {

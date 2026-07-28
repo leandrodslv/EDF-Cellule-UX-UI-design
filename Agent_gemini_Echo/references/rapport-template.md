@@ -1,7 +1,8 @@
 # Template — Rapport Final (Phase 4)
 
-Génère ce rapport après avoir lu la Synthèse & insights dans Notion.
-Écris dans Notion > Rapport final.
+Génère ce rapport après avoir lu `projets/[nom-projet]/04-synthese.md`
+et les notes de `projets/[nom-projet]/05-insights/`.
+Écris dans `projets/[nom-projet]/06-rapport-final.md` (voir `obsidian-structure.md`).
 
 ---
 
@@ -112,12 +113,12 @@ Cette recherche ne visait pas à évaluer [X] ni à comparer [Y].
 
 - 📋 [Lien → Préparation entretien]
 - 🧠 [Lien → Synthèse & insights détaillée]
-- 🎙 [Lien → Notes brutes]
+- 🎙 [[03-entretiens]] — notes brutes
 ```
 
 ---
 
-## Debriefing de fin de projet (affiché dans le chat, pas dans Notion)
+## Debriefing de fin de projet (affiché dans le chat, pas écrit dans le vault)
 
 Après avoir écrit le rapport, afficher dans le chat :
 
@@ -130,11 +131,12 @@ Après avoir écrit le rapport, afficher dans le chat :
 💡  Insights        : [N] identifiés ([N] en P1)
 🎯  Recommandations : [N] actions priorisées
 
-LIVRABLES NOTION :
-📋 Préparation     → [URL]
-📝 Notes brutes    → [URL]
-🧠 Synthèse        → [URL]
-📊 Rapport final   → [URL]
+LIVRABLES (vault Obsidian) :
+📋 Guide d'entretien → projets/[nom]/02-guide-entretien.md
+📝 Entretiens        → projets/[nom]/03-entretiens/
+🧠 Synthèse          → projets/[nom]/04-synthese.md
+💡 Insights          → projets/[nom]/05-insights/
+📊 Rapport final     → projets/[nom]/06-rapport-final.md
 
 PROCHAINE ÉTAPE RECOMMANDÉE :
 → [action design concrète basée sur l'insight P1]

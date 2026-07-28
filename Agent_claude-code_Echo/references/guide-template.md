@@ -1,6 +1,7 @@
 # Template — Guide d'Entretien (Phase 1)
 
-Génère ces 6 livrables dans cet ordre exact. Écris-les dans Notion > Préparation entretien.
+Génère ces 6 livrables dans cet ordre exact.
+Écris-les dans `projets/[nom-projet]/02-guide-entretien.md` (voir `obsidian-structure.md`).
 
 ## LIVRABLE 1 — CADRAGE RECHERCHE
 

@@ -27,41 +27,40 @@ et mis à jour après CHAQUE action.
         "interviews_done": 2
       },
 
-      "notion": {
-        "card_id": "abc123",
-        "card_url": "https://notion.so/...",
-        "pages": {
-          "preparation": "https://notion.so/...",
-          "notes_folder": "https://notion.so/...",
-          "synthese": "https://notion.so/...",
-          "rapport": "https://notion.so/..."
+      "vault": {
+        "folder": "./projets/onboarding-edf",
+        "note": "./projets/onboarding-edf/Onboarding-EDF.md",
+        "files": {
+          "plan": "./projets/onboarding-edf/00-plan-recherche.md",
+          "guide": "./projets/onboarding-edf/02-guide-entretien.md",
+          "notes_folder": "./projets/onboarding-edf/03-entretiens",
+          "synthese": "./projets/onboarding-edf/04-synthese.md",
+          "insights_folder": "./projets/onboarding-edf/05-insights",
+          "rapport": "./projets/onboarding-edf/06-rapport-final.md"
         }
       },
 
       "interviews": [
         {
           "number": 1,
-          "participant": "Sarah",
+          "participant": "#001",
           "date": "2025-04-17",
           "status": "done",
-          "notion_page_id": "xyz789",
-          "notion_page_url": "https://notion.so/..."
+          "note_path": "./projets/onboarding-edf/03-entretiens/E01 · #001.md"
         },
         {
           "number": 2,
-          "participant": "Marc",
+          "participant": "#002",
           "date": "2025-04-19",
           "status": "done",
-          "notion_page_id": "xyz790",
-          "notion_page_url": "https://notion.so/..."
+          "note_path": "./projets/onboarding-edf/03-entretiens/E02 · #002.md"
         },
         {
           "number": 3,
           "participant": null,
           "date": null,
           "status": "planned",
-          "notion_page_id": null,
-          "notion_page_url": null
+          "note_path": null
         }
       ],
 
@@ -109,7 +108,7 @@ et mis à jour après CHAQUE action.
 | Phase terminée | `phases_done[]`, `phase_current`, `next_action` |
 | Human Task émis | `human_tasks.current` |
 | Human Task complété | Déplacer vers `human_tasks.history`, vider `current` |
-| Notion écrit | Mettre à jour l'URL correspondante dans `notion.pages` |
+| Livrable écrit | Mettre à jour le chemin correspondant dans `vault.files` |
 
 ## Statuts projet possibles
 - `cadrage` → Phase 0 en cours
@@ -128,13 +127,21 @@ et mis à jour après CHAQUE action.
 
   "survey": {
     "status": "done",        // "pending" | "in_progress" | "done"
-    "excel_path": "./onboarding-edf-questionnaire.xlsx",
+    "excel_path": "./projets/onboarding-edf/fichiers/onboarding-edf-questionnaire.xlsx",
     "forms_url": "https://forms.office.com/...",
     "responses_received": 47,
     "responses_target": 50,
-    "recruited_for_interviews": ["Sarah", "Marc", "Julie"]
+    "recruited_for_interviews": ["#001", "#002", "#003"]
   }
 }
 ```
 
 Ajouter ces champs dans chaque entrée de `projects[]` selon le mode.
+
+---
+
+## Règle sur les chemins
+
+Tous les chemins sont **relatifs au dossier de l'agent** et commencent par `./`.
+Jamais de `../`, jamais de chemin absolu : l'agent ne sort pas de son dossier,
+et le vault doit rester déplaçable d'un poste à l'autre sans rien casser.

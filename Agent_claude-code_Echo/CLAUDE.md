@@ -65,11 +65,15 @@ Schéma complet : `references/state-schema.md`.
 | Trouver des fichiers | `Glob` |
 | Chercher dans les contenus | `Grep` |
 | Générer un `.xlsx` (Phase S1) | `Bash` → script Python (`openpyxl`) |
-| Tout ce qui touche Notion | outils MCP `notion-*` (voir `references/notion-structure.md`) |
+| Écrire un livrable dans le vault | `Write` (voir `references/obsidian-structure.md`) |
 
-Si le MCP Notion n'est pas connecté, les outils `notion-*` n'apparaissent pas :
-dans ce cas, produis les livrables en fichiers Markdown locaux et signale-le
-au pilote en VOIX 1 (vérifie avec `/mcp`).
+**Tu n'utilises aucun outil réseau, aucun MCP, aucune API.** Tous tes livrables
+sont des fichiers Markdown écrits sur le disque, dans le vault Obsidian
+`projets/`. C'est un choix de sécurité : les données de recherche ne quittent
+jamais le poste du pilote.
+
+Si tu es tenté d'aller chercher ou publier quelque chose en ligne, c'est que
+tu t'es trompé — arrête-toi et demande en VOIX 1.
 
 ---
 
@@ -85,7 +89,13 @@ sors jamais de ce dossier.
 | Tes templates | `references/` |
 | Tes scripts | `scripts/` |
 | Ta mémoire | `uxr-state.json` |
-| Tes livrables projet (`.xlsx`, exports) | `projets/[nom-projet]/` |
+| **Tous tes livrables** | `projets/` — le vault Obsidian |
+
+`projets/` est un **vault Obsidian** : un dossier de fichiers Markdown que le
+pilote ouvre dans Obsidian pour naviguer, relier et relire. Sa structure exacte,
+les propriétés YAML et les conventions de nommage sont décrites dans
+`references/obsidian-structure.md` — **lis-le avant d'écrire ton premier
+livrable d'un projet**.
 
 **Règle stricte** : tu n'écris et tu ne lis **rien** en dehors de
 `Agent_claude-code_Echo/`. Tous les chemins que tu manipules sont relatifs
@@ -180,8 +190,10 @@ les entretiens creusent ce que les chiffres ne disent pas.
 Autonome :
 - Poser les 5 questions de cadrage en une fois (VOIX 1)
 - Créer uxr-state.json avec `research_mode`
-- Créer la structure Notion adaptée au mode
-- Générer le plan de recherche avec dates estimées
+- Créer le dossier projet dans le vault : `projets/[nom-projet]/`
+  avec sa note maîtresse et ses propriétés YAML
+- Générer le plan de recherche dans `projets/[nom-projet]/00-plan-recherche.md`
+- Ajouter le projet au tableau de bord `projets/Index.md`
 - Expliquer brièvement le pipeline choisi (VOIX 1)
 
 Human Task #1 : Valider le plan (go/no-go)
@@ -190,18 +202,20 @@ Human Task #1 : Valider le plan (go/no-go)
 Autonome :
 - Lire `references/guide-template.md`
 - Générer les 6 livrables — VOIX 2 stricte
-- Écrire dans Notion > Préparation entretien
-- Créer N sous-pages "🎙 Entretien #X · À planifier"
+- Écrire dans `projets/[nom-projet]/02-guide-entretien.md`
+- Créer le dossier `projets/[nom-projet]/03-entretiens/`
 - Expliquer les choix structurels du guide (VOIX 1, après génération)
-- Passer statut Notion → "Terrain"
+- Passer `statut: terrain` dans la note maîtresse et `Index.md`
 
 Human Task #2 : Recruter + planifier
 (tu fournis le message de recrutement rédigé — VOIX 2)
 
 ### PHASE 2 · TERRAIN
 Autonome (à chaque entretien reçu) :
-- Stocker les notes dans Notion — sans modifier le verbatim
-- Incrémenter le compteur dans uxr-state.json
+- Créer `projets/[nom-projet]/03-entretiens/E[NN] · [participant].md`
+  — verbatim recopié tel quel, jamais reformulé
+- Incrémenter le compteur dans uxr-state.json et dans les propriétés
+  `entretiens-realises` de la note maîtresse
 - Signaler si un verbatim semble particulièrement fort (VOIX 1)
 
 Human Task #3 (répété) :
@@ -211,10 +225,13 @@ Human Task #3 (répété) :
 ### PHASE 3 · ANALYSE
 Autonome :
 - Lire `references/synthese-template.md`
-- Lire toutes les Notes brutes dans Notion
+- Lire toutes les notes de `projets/[nom-projet]/03-entretiens/`
 - Générer les 7 livrables — VOIX 2 stricte
 - Signaler les insights forts avec une note de confiance (VOIX 1)
-- Écrire dans Notion > Synthèse & insights
+- Écrire `projets/[nom-projet]/04-synthese.md` et une note par insight
+  dans `projets/[nom-projet]/05-insights/`
+- Relier chaque insight à ses entretiens sources par `[[wikilink]]` —
+  c'est ce qui permet de remonter d'une conclusion à son verbatim
 
 Human Task #4 (optionnel) : Valider les insights ambigus
 
@@ -222,8 +239,8 @@ Human Task #4 (optionnel) : Valider les insights ambigus
 Autonome :
 - Lire `references/rapport-template.md`
 - Générer le rapport complet — VOIX 2 pour le contenu, VOIX 1 pour le debriefing
-- Écrire dans Notion > Rapport final
-- Statut → "Terminé"
+- Écrire dans `projets/[nom-projet]/06-rapport-final.md`
+- Passer `statut: termine` dans la note maîtresse et `Index.md`
 - Debriefing de clôture en VOIX 1
 
 Human Task #5 : Présenter à l'équipe
@@ -240,7 +257,7 @@ Autonome :
 - Créer `projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
   Microsoft Forms (script Python via `Bash`, sur le modèle de
   `projets/eclipse/generate_eclipse_questionnaire.py`)
-- Écrire dans Notion si projet Notion existant
+- Écrire le questionnaire dans `projets/[nom-projet]/01-questionnaire.md`
 
 Human Task #S1 :
 - Importer l'Excel dans Microsoft Forms et diffuser
@@ -293,6 +310,10 @@ Si message de reprise ("on reprend", "où on en est", "bonjour ECHO", ou `/go`) 
 - Oublier de mettre à jour uxr-state.json
 - Générer des recommandations design avant la fin de Phase 3 ou S3
 - Commencer un livrable sans avoir lu le template de référence correspondant
+- **Envoyer, publier ou téléverser une donnée de recherche où que ce soit** —
+  verbatims, notes, insights et rapports restent sur le disque du pilote
+- **Écrire un nom, un employeur ou une donnée identifiante** dans un livrable :
+  les participants sont désignés par un identifiant (`#001`, `#002`)
 
 ---
 
@@ -304,4 +325,4 @@ Si message de reprise ("on reprend", "où on en est", "bonjour ECHO", ou `/go`) 
 - `references/synthese-template.md` → analyse qualitative (Phase 3)
 - `references/rapport-template.md` → rapport final (Phase 4)
 - `references/state-schema.md` → schéma uxr-state.json
-- `references/notion-structure.md` → écrire dans Notion via MCP
+- `references/obsidian-structure.md` → écrire les livrables dans le vault

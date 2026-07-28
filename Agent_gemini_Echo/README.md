@@ -30,26 +30,20 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
 ## Prérequis
 
 - **Node.js 20+** (requis par Gemini CLI)
-- **Notion MCP** déclaré dans `.gemini/settings.json` (déjà configuré)
-  → au premier lancement, autorise-le avec `/mcp auth notion`
-  → vérifie la connexion avec `/mcp list`
 - **Python + openpyxl** pour la génération des `.xlsx` (Phase S1) :
   ```
   pip install openpyxl
   ```
 - Le fichier `uxr-state.json` présent (déjà inclus)
+- **Obsidian** (facultatif) — pour naviguer dans le vault `projets/`.
+  Sans lui, ECHO écrit exactement les mêmes fichiers, simplement moins
+  agréables à parcourir.
 
-### Alternative Notion en local (si le MCP distant ne convient pas)
+### Aucun connecteur réseau
 
-Remplace le bloc `notion` de `.gemini/settings.json` par :
-
-```json
-"notion": {
-  "command": "npx",
-  "args": ["-y", "@notionhq/notion-mcp-server"],
-  "env": { "NOTION_TOKEN": "$NOTION_TOKEN" }
-}
-```
+Cet agent n'utilise **aucun MCP, aucune API, aucun jeton d'accès**. Tous les
+livrables sont des fichiers Markdown écrits sur ton disque, dans `projets/`.
+Rien n'est envoyé nulle part — c'est un choix de sécurité assumé.
 
 ---
 
@@ -71,8 +65,9 @@ ou
 Nouveau projet UXR : [description en 1-2 phrases]
 ```
 
-ECHO te posera les 5 questions de cadrage en une fois, créera tout dans Notion,
-et te donnera le Human Task #1 (valider le plan).
+ECHO te posera les 5 questions de cadrage en une fois, créera le dossier du
+projet dans le vault `projets/`, et te donnera le Human Task #1
+(valider le plan).
 
 ---
 
@@ -105,7 +100,9 @@ J'ai fait l'entretien avec Sarah, voici les notes :
 [notes brutes]
 ```
 
-ECHO stocke dans Notion, met à jour le compteur, et te dit quoi faire ensuite.
+ECHO crée la note d'entretien dans `projets/[projet]/03-entretiens/`, recopie
+le verbatim sans le retoucher, met à jour le compteur, et te dit quoi faire
+ensuite.
 
 ---
 
@@ -117,26 +114,34 @@ Agent_gemini_Echo/                     ← lance `gemini` DEPUIS ce dossier
 ├── uxr-state.json                     ← mémoire persistante des projets
 ├── README.md                          ← ce fichier
 ├── .gemini/
-│   ├── settings.json                  ← config MCP Notion + contexte
+│   ├── settings.json                  ← contexte (aucun MCP)
 │   └── commands/
 │       └── go.toml                    ← commande /go
 ├── scripts/
 │   └── generate_analysis.py           ← génération des analyses .xlsx
-├── projets/                           ← TES livrables (propres à cet agent)
+├── projets/                           ← TON VAULT OBSIDIAN
+│   ├── Index.md                       ← tableau de bord des projets
+│   ├── _templates/                    ← modèles de notes
+│   ├── _migration-notion.md           ← reste à faire sur Eclipse
 │   └── eclipse/
-│       ├── eclipse-questionnaire.xlsx
-│       ├── eclipse-responses.xlsx
-│       ├── eclipse-analyse.xlsx
-│       └── generate_eclipse_*.py
+│       ├── Eclipse.md                 ← note maîtresse (propriétés YAML)
+│       ├── 00-plan-recherche.md
+│       ├── 01-questionnaire.md
+│       ├── 03-entretiens/
+│       ├── 05-insights/
+│       └── fichiers/                  ← pièces jointes .xlsx
 └── references/
     ├── state-schema.md                ← schéma JSON de l'état
+    ├── obsidian-structure.md          ← comment écrire dans le vault
     ├── guide-template.md              ← template Phase 1 (préparation)
     ├── questionnaire-template.md      ← template Phase S1 (questionnaire)
     ├── analyse-s2.md                  ← template Phase S2 (analyse réponses)
     ├── synthese-template.md           ← template Phase 3 (analyse)
-    ├── rapport-template.md            ← template Phase 4 (rapport final)
-    └── notion-structure.md            ← comment écrire dans Notion via MCP
+    └── rapport-template.md            ← template Phase 4 (rapport final)
 ```
+
+Pour ouvrir le vault : Obsidian → **Ouvrir un dossier comme vault** →
+sélectionne `projets/`.
 
 ---
 
@@ -145,8 +150,7 @@ Agent_gemini_Echo/                     ← lance `gemini` DEPUIS ce dossier
 | Commande | Effet |
 |----------|-------|
 | `/go` | Lance ou reprend la session ECHO |
-| `/mcp list` | Vérifie que le serveur Notion est connecté |
-| `/mcp auth notion` | Autorise le MCP Notion (OAuth) |
+| `/directory` | Vérifie le périmètre de fichiers accessible |
 | `/memory show` | Affiche le contexte `GEMINI.md` chargé |
 | `/memory refresh` | Recharge `GEMINI.md` après édition |
 | `/chat save <nom>` | Sauvegarde la conversation en cours |

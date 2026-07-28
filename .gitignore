@@ -13,6 +13,13 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Obsidian — état d'interface propre à chaque poste.
+# Le reste de .obsidian/ (thème, plugins, réglages du vault) est versionné
+# volontairement : la cellule partage la même configuration de vault.
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/cache/
+
 # Secrets / config locale (quel que soit l'agent)
 .env
 **/settings.local.json
