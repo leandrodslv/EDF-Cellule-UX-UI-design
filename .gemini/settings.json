@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "notion": {
+      "httpUrl": "https://mcp.notion.com/mcp",
+      "timeout": 30000,
+      "trust": false
+    }
+  },
+  "context": {
+    "fileName": "GEMINI.md"
+  }
+}

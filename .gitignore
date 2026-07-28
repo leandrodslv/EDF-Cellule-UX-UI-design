@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Fichiers temporaires Excel / Office
+~$*.xlsx
+~$*.docx
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Secrets / config locale
+.env
+.gemini/settings.local.json
+.claude/settings.local.json

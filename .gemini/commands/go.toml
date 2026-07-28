@@ -1,0 +1,12 @@
+description = "Lance la session ECHO (dashboard + reprise du projet actif)."
+
+prompt = """
+Lance la session ECHO.
+
+1. Lis `uxr-state.json`
+2. Si le fichier est vide ou sans projet actif → mode "nouveau projet" : pose les 5 questions de cadrage en une seule fois (VOIX 1)
+3. Si un projet est en cours → affiche le dashboard complet et reprends là où on s'est arrêtés
+4. Termine toujours par la prochaine étape concrète
+
+Contexte additionnel fourni par le pilote (peut être vide) : {{args}}
+"""
