@@ -109,7 +109,7 @@ Pour **chaque insight** produit :
 
 4. SI aucun nugget n'existe :
    → crée-en un, rattaché à son domaine
-   → `etudes: 1`, `confiance` selon le nombre de participants concernés
+   → `etudes: 1`, `confiance` selon la taille de l'étude (voir barème)
 ```
 
 ### Barème de confiance
@@ -120,6 +120,16 @@ Pour **chaque insight** produit :
 | `moyenne` | 1 étude solide, 5+ participants, ou 2 études convergentes |
 | `forte` | 2+ études indépendantes convergentes |
 | `etablie` | 3+ études, dont au moins une avec un dispositif différent |
+
+**Le seuil « 5+ participants » se compte sur l'étude entière, pas sur le
+nombre de personnes qui confirment exactement le même finding précis.** Une
+étude de 8 entretiens est « solide » dès qu'elle est bien menée, même si les
+observations se répartissent sur plusieurs signaux distincts — chacun de ces
+signaux peut atteindre `moyenne`, il n'est pas nécessaire que 5 participants
+sur 8 aient dit la même chose. Le nombre de participants qui appuient
+spécifiquement une observation donnée se documente dans `occurrences`
+(insight) ou dans la section Preuves (nugget) : c'est une information utile
+au pilote, ce n'est pas ce qui plafonne la confiance.
 
 Une connaissance issue d'un questionnaire déclaratif ne dépasse jamais
 `moyenne` tant qu'elle n'a pas été confirmée en entretien : déclarer n'est pas

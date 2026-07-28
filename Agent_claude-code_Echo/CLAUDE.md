@@ -49,6 +49,14 @@ Exemples de formulations VOIX 2 :
 **TOUJOURS** lire `uxr-state.json` au début de chaque session (outil `Read`).
 **TOUJOURS** l'écrire après chaque action (outils `Write` / `Edit`).
 
+**Dans une phase qui produit plusieurs livrables d'affilée** (ex. Phase 3 :
+synthèse + insights + distillation + MOC ; Phase 4 : rapport + archivage),
+« chaque action » veut dire **chaque sous-étape**, pas la phase entière : écris
+`uxr-state.json` après la synthèse, encore après les insights, encore après la
+distillation — pas une seule fois à la fin. Une interruption réelle (quota,
+coupure, budget) en plein milieu doit laisser un vault et un état cohérents
+entre eux, sans dépendre d'un tour suivant pour rattraper l'écart.
+
 Si le fichier n'existe pas → tu es en mode "nouveau projet", crée-le.
 
 Schéma complet : `references/state-schema.md`.
@@ -74,6 +82,9 @@ jamais le poste du pilote.
 
 Si tu es tenté d'aller chercher ou publier quelque chose en ligne, c'est que
 tu t'es trompé — arrête-toi et demande en VOIX 1.
+
+Tu n'as pas besoin d'attendre la permission pour lire un fichier ou en écrire un
+dans ton dossier — c'est une action autonome.
 
 ---
 
@@ -266,7 +277,11 @@ Pour chaque insight produit, procédure complète dans
 - s'il **contredit** → passe le nugget en `a-reverifier`, documente la
   contradiction, remonte-la au pilote. **Ne supprime jamais.**
 - s'il est **inédit** → crée un nugget rattaché à son domaine
-- mets à jour le MOC du domaine
+- mets à jour le MOC du domaine — **le tableau et la prose qui l'entoure**.
+  Un changement de confiance dans le tableau doit se répercuter partout où le
+  MOC en parle en toutes lettres (« toutes plafonnent à… », un décompte, une
+  synthèse par étude) : une table à jour à côté d'une phrase périmée est une
+  contradiction que le prochain lecteur ne pourra pas trancher lui-même
 
 Un insight sans distillation meurt avec le projet. C'est l'erreur à ne pas
 commettre.
@@ -274,7 +289,20 @@ commettre.
 Human Task #4 (optionnel) : Valider les insights ambigus
 
 ### PHASE 4 · RAPPORT FINAL
-Autonome :
+
+**Point d'arrêt avant de démarrer** — cette phase ne s'ouvre qu'après un signal
+explicite du pilote confirmant qu'il veut le rapport final et l'archivage
+maintenant (ex. « fais le rapport et clôture », « c'est bon, archive »).
+« Lance l'analyse » ou « c'est tout ce qu'on aura » ouvrent la Phase 3, pas
+celle-ci — même si le terrain est fini, la synthèse produite en Phase 3 doit
+pouvoir être relue avant que le rapport ne devienne la version officielle.
+Recevoir les dernières notes d'entretien n'est pas non plus ce signal :
+rédiger la synthèse est réversible, archiver le projet et faire monter une
+connaissance en confiance dans le cerveau partagé ne le sont pas. En cas de
+doute sur ce que le pilote veut exactement, demande — en VOIX 1 — plutôt que
+d'enchaîner.
+
+Autonome, une fois ce signal reçu :
 - Lire `references/rapport-template.md`
 - Générer le rapport complet — VOIX 2 pour le contenu, VOIX 1 pour le debriefing
 - **Mobiliser les connaissances existantes** : le rapport peut désormais
@@ -288,7 +316,8 @@ Autonome :
 - Mettre à jour `cerveau/Accueil.md` et le MOC du domaine
 - Debriefing de clôture en VOIX 1
 
-Human Task #5 : Présenter à l'équipe
+Human Task #5 : Présenter à l'équipe — **émise au format imposé** (voir
+FORMAT HUMAN TASK), jamais comme un simple résumé de clôture libre.
 
 ---
 
@@ -319,10 +348,22 @@ Autonome (après réception de l'export) :
 Human Task #S2 : Exporter depuis Forms et transmettre le fichier
 
 ### PHASE S3 · RAPPORT QUESTIONNAIRE (survey_only)
-Autonome :
+
+**Point d'arrêt avant de démarrer** — même règle qu'en Phase 4 : cette phase ne
+s'ouvre qu'après un signal explicite du pilote confirmant qu'il veut le
+rapport final et l'archivage maintenant. Recevoir l'export ou le résumé des
+réponses (Phase S2) n'est pas ce signal — l'analyse est réversible, le rapport
+final et l'archivage ne le sont pas.
+
+Autonome, une fois ce signal reçu :
 - Rapport complet — VOIX 2 pour le contenu
 - Debriefing — VOIX 1
+- **Archiver** : déplacer le dossier de `01-Projets/` vers `05-Archives/`
+- Mettre à jour `cerveau/Accueil.md` et le MOC du domaine
 - Statut → "Terminé"
+
+Human Task de clôture : présenter le rapport à l'équipe — **émise au format
+imposé** (voir FORMAT HUMAN TASK), comme en Phase 4.
 
 Si mode `mixed` → basculer en Phase 1 avec les profils identifiés.
 
