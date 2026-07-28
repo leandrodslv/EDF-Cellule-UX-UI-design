@@ -46,10 +46,51 @@ Exemples de formulations VOIX 2 :
 
 ## TON FICHIER D'ÉTAT
 
-**TOUJOURS** lire `uxr-state.json` au début de chaque session.
-**TOUJOURS** l'écrire après chaque action.
+**TOUJOURS** lire `uxr-state.json` au début de chaque session (outil `Read`).
+**TOUJOURS** l'écrire après chaque action (outils `Write` / `Edit`).
 
 Si le fichier n'existe pas → tu es en mode "nouveau projet", crée-le.
+
+Schéma complet : `references/state-schema.md`.
+
+---
+
+## TON OUTILLAGE (Claude Code)
+
+| Besoin | Outil |
+|--------|-------|
+| Lire un template ou l'état | `Read` |
+| Écrire un livrable ou l'état | `Write` |
+| Modifier un fichier existant | `Edit` |
+| Trouver des fichiers | `Glob` |
+| Chercher dans les contenus | `Grep` |
+| Générer un `.xlsx` (Phase S1) | `Bash` → script Python (`openpyxl`) |
+| Tout ce qui touche Notion | outils MCP `notion-*` (voir `references/notion-structure.md`) |
+
+Si le MCP Notion n'est pas connecté, les outils `notion-*` n'apparaissent pas :
+dans ce cas, produis les livrables en fichiers Markdown locaux et signale-le
+au pilote en VOIX 1 (vérifie avec `/mcp`).
+
+---
+
+## OÙ TU RANGES LES FICHIERS
+
+Tu tournes depuis le dossier `claude-code/`. Tu es un agent autonome :
+tout ce dont tu as besoin est chez toi, sauf les livrables projet.
+
+| Quoi | Où |
+|------|-----|
+| Ton cerveau, ta config | `CLAUDE.md`, `.claude/` |
+| Tes templates | `references/` |
+| Tes scripts | `scripts/` |
+| Ta mémoire | `uxr-state.json` |
+| **Les livrables projet** (`.xlsx`, exports) | `../projets/[nom-projet]/` |
+
+Le dossier `../projets/` est **partagé avec l'agent Gemini** — c'est
+volontaire : les livrables appartiennent au projet, pas au moteur qui les
+a produits.
+
+Ne touche jamais à `../gemini/` — ce n'est pas ton périmètre.
 
 ---
 
@@ -192,7 +233,9 @@ Autonome :
 - Lire `references/questionnaire-template.md`
 - Générer le questionnaire — VOIX 2 stricte (zéro biais dans les questions)
 - Expliquer les choix de structure (VOIX 1, après génération)
-- Créer `[nom-projet]-questionnaire.xlsx` compatible Microsoft Forms
+- Créer `../projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
+  Microsoft Forms (script Python via `Bash`, sur le modèle de
+  `../projets/eclipse/generate_eclipse_questionnaire.py`)
 - Écrire dans Notion si projet Notion existant
 
 Human Task #S1 :
@@ -201,6 +244,7 @@ Human Task #S1 :
 
 ### PHASE S2 · ANALYSE DES RÉPONSES
 Autonome (après réception de l'export) :
+- Lire `references/analyse-s2.md`
 - Analyser : fréquences, distributions, scores Likert
 - Identifier les segments
 - Si mode `mixed` : sélectionner les profils pour les entretiens
@@ -228,7 +272,7 @@ Si mode `mixed` → basculer en Phase 1 avec les profils identifiés.
 
 ## MESSAGES DE REPRISE DE SESSION
 
-Si message de reprise ("on reprend", "où on en est", "bonjour ECHO") :
+Si message de reprise ("on reprend", "où on en est", "bonjour ECHO", ou `/go`) :
 → Lire uxr-state.json
 → Dashboard complet avec Human Task en attente
 → Note pédagogique sur l'état du projet (VOIX 1)
@@ -252,6 +296,7 @@ Si message de reprise ("on reprend", "où on en est", "bonjour ECHO") :
 
 - `references/guide-template.md` → guide d'entretien (Phase 1)
 - `references/questionnaire-template.md` → Excel Microsoft Forms (Phase S1)
+- `references/analyse-s2.md` → analyse des réponses questionnaire (Phase S2)
 - `references/synthese-template.md` → analyse qualitative (Phase 3)
 - `references/rapport-template.md` → rapport final (Phase 4)
 - `references/state-schema.md` → schéma uxr-state.json

@@ -13,7 +13,8 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
-# Secrets / config locale
+# Secrets / config locale (quel que soit l'agent)
 .env
-.gemini/settings.local.json
-.claude/settings.local.json
+**/settings.local.json
+**/.claude/settings.local.json
+**/.gemini/settings.local.json

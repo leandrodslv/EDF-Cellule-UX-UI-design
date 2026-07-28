@@ -1,0 +1,107 @@
+{
+  "version": "1.0",
+  "agent": "uxr-agent",
+  "last_updated": "2026-04-20T00:00:00",
+  "active_project": "eclipse",
+
+  "projects": [
+    {
+      "id": "eclipse",
+      "name": "Eclipse",
+      "status": "termine",
+      "created_at": "2026-04-20",
+      "research_mode": "mixed",
+
+      "research": {
+        "objective": "Comprendre pourquoi 45% des utilisateurs abandonnent leur panier au moment de passer à l'abonnement annuel",
+        "questions": [
+          "Quels sont les freins psychologiques au paiement ?",
+          "La grille tarifaire est-elle suffisamment claire ?",
+          "Quelle est la valeur perçue des fonctionnalités Pro ?"
+        ],
+        "decision": "Priorisation roadmap Q3 + redesign page de tarification",
+        "participant_profile": "Utilisateurs actifs freemium > 3 mois, ayant consulté la page de tarification 2+ fois sans convertir",
+        "interviews_planned": 8,
+        "interviews_done": 8
+      },
+
+      "survey": {
+        "status": "done",
+        "excel_path": "../projets/eclipse/eclipse-questionnaire.xlsx",
+        "analysis_path": "../projets/eclipse/eclipse-analyse.xlsx",
+        "forms_url": "https://forms.microsoft.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__kNTKAVUOUNLRk9GRzA4WTc3OFpHQzVDTVJCWUxVTy4u",
+        "responses_received": 200,
+        "responses_target": 200,
+        "score_clarte_avg": 2.58,
+        "score_valeur_avg": 3.74,
+        "recruited_for_interviews": ["#002", "#011", "#015", "#006", "#013", "#010", "#004", "#008"]
+      },
+
+      "notion": {
+        "database_id": "3443ac65-6c1c-8072-98f5-c8a4f0b331f5",
+        "card_id": "3483ac65-6c1c-8152-9015-d9c737e0d932",
+        "card_url": "https://www.notion.so/3483ac656c1c81529015d9c737e0d932",
+        "pages": {
+          "questionnaire": "https://www.notion.so/3483ac656c1c81fe980bd28951196849",
+          "preparation": "https://www.notion.so/3483ac656c1c811c8b67c0abf58d2738",
+          "notes_folder": "https://www.notion.so/3483ac656c1c818582bacc13a3712418",
+          "synthese": "https://www.notion.so/3483ac656c1c81b6be52d67a74589609",
+          "rapport": "https://www.notion.so/3483ac656c1c8131879ef708cfdabd20"
+        }
+      },
+
+      "interviews": [
+        {"number": 1, "participant": "#002", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8131-950e-df71e7146c6a", "notion_page_url": "https://www.notion.so/3483ac656c1c8131950edf71e7146c6a"},
+        {"number": 2, "participant": "#011", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8193-b2d6-e1113e021fa6", "notion_page_url": "https://www.notion.so/3483ac656c1c8193b2d6e1113e021fa6"},
+        {"number": 3, "participant": "#015", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81f5-bdc0-ceb8f6362d71", "notion_page_url": "https://www.notion.so/3483ac656c1c81f5bdc0ceb8f6362d71"},
+        {"number": 4, "participant": "#006", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-811c-bb6f-cfb775d586fb", "notion_page_url": "https://www.notion.so/3483ac656c1c811cbb6fcfb775d586fb"},
+        {"number": 5, "participant": "#013", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-812d-9a3e-c99ed3676db9", "notion_page_url": "https://www.notion.so/3483ac656c1c812d9a3ec99ed3676db9"},
+        {"number": 6, "participant": "#010", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81fa-b138-c4daf5fd1027", "notion_page_url": "https://www.notion.so/3483ac656c1c81fab138c4daf5fd1027"},
+        {"number": 7, "participant": "#004", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-81b3-b058-d66f1aadc77e", "notion_page_url": "https://www.notion.so/3483ac656c1c81b3b058d66f1aadc77e"},
+        {"number": 8, "participant": "#008", "date": "2026-04-20", "status": "done", "notion_page_id": "3483ac65-6c1c-8122-8534-fdb5269d1061", "notion_page_url": "https://www.notion.so/3483ac656c1c81228534fdb5269d1061"}
+      ],
+
+      "plan": {
+        "phase_current": "termine",
+        "phases_done": ["init", "cadrage", "S1", "S2", "preparation", "terrain", "analyse", "rapport"],
+        "next_action": "Présenter au Steering Committee — 11 mai 2026",
+        "estimated_end": "2026-05-10",
+        "steering_committee": "2026-05-11",
+        "milestones": {
+          "S1_questionnaire_ready": "2026-04-21",
+          "S1_diffusion_start": "2026-04-21",
+          "S2_analysis": "2026-04-27",
+          "phase1_guide_ready": "2026-04-28",
+          "phase2_terrain_start": "2026-04-30",
+          "phase2_terrain_end": "2026-05-06",
+          "phase3_analysis": "2026-05-08",
+          "phase4_report": "2026-05-10"
+        }
+      },
+
+      "human_tasks": {
+        "current": null,
+        "history": [
+          {
+            "id": 1,
+            "title": "Valider le plan de recherche",
+            "status": "done",
+            "completed_at": "2026-04-20T00:00:00"
+          },
+          {
+            "id": 2,
+            "title": "Importer et diffuser le questionnaire Microsoft Forms",
+            "status": "done",
+            "completed_at": "2026-04-20T00:00:00"
+          },
+          {
+            "id": 3,
+            "title": "Recruter les 8 participants et planifier les entretiens",
+            "status": "done",
+            "completed_at": "2026-04-20T00:00:00"
+          }
+        ]
+      }
+    }
+  ]
+}

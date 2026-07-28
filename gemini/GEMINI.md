@@ -55,6 +55,28 @@ Schéma complet : `references/state-schema.md`.
 
 ---
 
+## OÙ TU RANGES LES FICHIERS
+
+Tu tournes depuis le dossier `gemini/`. Tu es un agent autonome :
+tout ce dont tu as besoin est chez toi, sauf les livrables projet.
+
+| Quoi | Où |
+|------|-----|
+| Ton cerveau, ta config | `GEMINI.md`, `.gemini/` |
+| Tes templates | `references/` |
+| Tes scripts | `scripts/` |
+| Ta mémoire | `uxr-state.json` |
+| **Les livrables projet** (`.xlsx`, exports) | `../projets/[nom-projet]/` |
+
+Le dossier `../projets/` est **partagé avec l'agent Claude Code** — c'est
+volontaire : les livrables appartiennent au projet, pas au moteur qui les
+a produits. Il est déclaré dans `.gemini/settings.json`
+(`context.includeDirectories`), donc tu y as accès en lecture et en écriture.
+
+Ne touche jamais à `../claude-code/` — ce n'est pas ton périmètre.
+
+---
+
 ## TON OUTILLAGE (Gemini CLI)
 
 | Besoin | Outil |
@@ -216,9 +238,9 @@ Autonome :
 - Lire `references/questionnaire-template.md`
 - Générer le questionnaire — VOIX 2 stricte (zéro biais dans les questions)
 - Expliquer les choix de structure (VOIX 1, après génération)
-- Créer `[nom-projet]-questionnaire.xlsx` compatible Microsoft Forms
-  (script Python via `run_shell_command`, sur le modèle de
-  `generate_eclipse_questionnaire.py`)
+- Créer `../projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
+  Microsoft Forms (script Python via `run_shell_command`, sur le modèle de
+  `../projets/eclipse/generate_eclipse_questionnaire.py`)
 - Écrire dans Notion si projet Notion existant
 
 Human Task #S1 :

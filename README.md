@@ -1,141 +1,109 @@
-# ECHO — Agent UXR · Setup & Usage (Gemini CLI)
+# EDF · Cellule UX/UI Design
 
-Agent orchestrateur de recherche utilisateur. Pilote de A à Z le cycle de vie
-d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
+Ce dépôt héberge **ECHO**, agent UXR autonome qui pilote un projet de recherche
+utilisateur de A à Z — cadrage, questionnaire, entretiens, analyse, rapport.
 
----
-
-## Installation
-
-1. Installe Gemini CLI :
-   ```
-   npm install -g @google/gemini-cli
-   ```
-2. Place ce dossier à la racine de ton projet (ou dans un dossier dédié)
-3. Lance `gemini` depuis ce dossier
-4. Gemini lit automatiquement `GEMINI.md` au démarrage — ECHO est en place
+ECHO existe en **deux implémentations indépendantes**, une par moteur.
+Même méthode, même personnalité, même pipeline — seule la plomberie change.
 
 ---
 
-## Prérequis
+## Choisir son agent
 
-- **Node.js 20+** (requis par Gemini CLI)
-- **Notion MCP** déclaré dans `.gemini/settings.json` (déjà configuré)
-  → au premier lancement, autorise-le avec `/mcp auth notion`
-  → vérifie la connexion avec `/mcp list`
-- **Python + openpyxl** pour la génération des `.xlsx` (Phase S1) :
-  ```
-  pip install openpyxl
-  ```
-- Le fichier `uxr-state.json` présent (déjà inclus)
+| | **Claude Code** | **Gemini CLI** |
+|---|---|---|
+| Dossier | [`claude-code/`](claude-code/) | [`gemini/`](gemini/) |
+| Cerveau | `CLAUDE.md` | `GEMINI.md` |
+| Commande | `.claude/commands/go.md` | `.gemini/commands/go.toml` |
+| Config MCP | `claude mcp add …` | `.gemini/settings.json` |
+| Lancement | `cd claude-code && claude` | `cd gemini && gemini` |
 
-### Alternative Notion en local (si le MCP distant ne convient pas)
+Les deux sont **autonomes** : chacun embarque ses propres `references/`,
+`scripts/` et `uxr-state.json`. Tu peux en partager un seul à un collègue,
+il fonctionnera sans le reste du dépôt.
 
-Remplace le bloc `notion` de `.gemini/settings.json` par :
-
-```json
-"notion": {
-  "command": "npx",
-  "args": ["-y", "@notionhq/notion-mcp-server"],
-  "env": { "NOTION_TOKEN": "$NOTION_TOKEN" }
-}
-```
+> **Important** — lance toujours le CLI *depuis le dossier de l'agent*, jamais
+> depuis la racine. Les deux outils cherchent leur fichier de contexte à partir
+> du dossier courant : lancés d'ici, ils ne trouveraient rien.
 
 ---
 
-## Démarrer un nouveau projet
+## Arborescence
 
 ```
-/go
-```
-
-ou
-
-```
-Lance une recherche sur [sujet]
-```
-
-ou
-
-```
-Nouveau projet UXR : [description en 1-2 phrases]
-```
-
-ECHO te posera les 5 questions de cadrage en une fois, créera tout dans Notion,
-et te donnera le Human Task #1 (valider le plan).
-
----
-
-## Reprendre un projet en cours
-
-```
-/go
-```
-
-ou
-
-```
-On reprend
-```
-
-ou
-
-```
-Où on en est sur [nom du projet] ?
-```
-
-ECHO lit `uxr-state.json`, affiche le dashboard, et reprend là où il s'est arrêté.
-
----
-
-## Ajouter des notes d'entretien
-
-```
-J'ai fait l'entretien avec Sarah, voici les notes :
-[notes brutes]
-```
-
-ECHO stocke dans Notion, met à jour le compteur, et te dit quoi faire ensuite.
-
----
-
-## Fichiers
-
-```
-ECHO/
-├── GEMINI.md                          ← cerveau de l'agent (lu automatiquement)
-├── uxr-state.json                     ← mémoire persistante des projets
-├── README.md                          ← ce fichier
-├── .gemini/
-│   ├── settings.json                  ← config MCP Notion + contexte
-│   └── commands/
-│       └── go.toml                    ← commande /go
-├── scripts/
-│   └── generate_analysis.py           ← génération des analyses .xlsx
-└── references/
-    ├── state-schema.md                ← schéma JSON de l'état
-    ├── guide-template.md              ← template Phase 1 (préparation)
-    ├── questionnaire-template.md      ← template Phase S1 (questionnaire)
-    ├── analyse-s2.md                  ← template Phase S2 (analyse réponses)
-    ├── synthese-template.md           ← template Phase 3 (analyse)
-    ├── rapport-template.md            ← template Phase 4 (rapport final)
-    └── notion-structure.md            ← comment écrire dans Notion via MCP
+EDF-Cellule-UX-UI-design/
+├── README.md                  ← ce fichier
+│
+├── claude-code/               ← agent ECHO · moteur Claude Code
+│   ├── CLAUDE.md
+│   ├── .claude/commands/go.md
+│   ├── references/
+│   ├── scripts/
+│   ├── uxr-state.json
+│   └── README.md              ← setup détaillé
+│
+├── gemini/                    ← agent ECHO · moteur Gemini CLI
+│   ├── GEMINI.md
+│   ├── .gemini/
+│   │   ├── settings.json
+│   │   └── commands/go.toml
+│   ├── references/
+│   ├── scripts/
+│   ├── uxr-state.json
+│   └── README.md              ← setup détaillé
+│
+└── projets/                   ← livrables, partagés entre les deux agents
+    └── eclipse/
+        ├── eclipse-questionnaire.xlsx
+        ├── eclipse-responses.xlsx
+        ├── eclipse-analyse.xlsx
+        └── generate_eclipse_*.py
 ```
 
 ---
 
-## Commandes Gemini CLI utiles
+## Pourquoi `projets/` est partagé
 
-| Commande | Effet |
-|----------|-------|
-| `/go` | Lance ou reprend la session ECHO |
-| `/mcp list` | Vérifie que le serveur Notion est connecté |
-| `/mcp auth notion` | Autorise le MCP Notion (OAuth) |
-| `/memory show` | Affiche le contexte `GEMINI.md` chargé |
-| `/memory refresh` | Recharge `GEMINI.md` après édition |
-| `/chat save <nom>` | Sauvegarde la conversation en cours |
-| `/chat resume <nom>` | Reprend une conversation sauvegardée |
-| `/stats` | Consommation de tokens de la session |
+Les livrables appartiennent au projet de recherche, pas au moteur qui les a
+produits. Un questionnaire généré côté Gemini doit rester exploitable côté
+Claude Code — et inversement. C'est le seul point de contact entre les deux
+agents, et il est volontaire.
+
+Côté Gemini, ce dossier est déclaré dans `.gemini/settings.json`
+(`context.includeDirectories`) car Gemini CLI restreint par défaut ses accès
+fichiers au dossier de lancement.
+
+---
+
+## Maintenir les deux en parallèle
+
+`references/` est dupliqué dans chaque agent — c'est le prix de l'autonomie.
+**Si tu modifies un template, reporte-le dans les deux dossiers.**
+
+Vérifier qu'ils n'ont pas divergé :
+
+```bash
+diff -r claude-code/references gemini/references
+diff -r claude-code/scripts    gemini/scripts
+```
+
+`scripts/` doit être strictement identique — aucune sortie attendue.
+
+`references/` doit être identique **sauf `notion-structure.md`** : les commandes
+de vérification du MCP diffèrent entre les deux CLI (`/mcp` côté Claude Code,
+`/mcp list` + `/mcp auth notion` côté Gemini). C'est la seule divergence
+légitime — toute autre différence est une dérive à corriger.
+
+---
+
+## Projet de référence — Eclipse
+
+Projet UXR complet et terminé, mode `mixed` (questionnaire + entretiens) :
+200 réponses au questionnaire, 8 entretiens, analyse et rapport livrés.
+Sert d'exemple de bout en bout dans `projets/eclipse/`.
+
+Les données participants sont **anonymisées** (identifiants `#001` à `#200`,
+aucun nom, aucune donnée personnelle).
 
 ---
 
