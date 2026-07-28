@@ -1,8 +1,8 @@
 # Template — Rapport Final (Phase 4)
 
-Génère ce rapport après avoir lu `projets/[nom-projet]/04-synthese.md`
-et les notes de `projets/[nom-projet]/05-insights/`.
-Écris dans `projets/[nom-projet]/06-rapport-final.md` (voir `obsidian-structure.md`).
+Génère ce rapport après avoir lu `cerveau/01-Projets/[nom-projet]/04-synthese.md`
+et les notes de `cerveau/01-Projets/[nom-projet]/05-insights/`.
+Écris dans `cerveau/01-Projets/[nom-projet]/06-rapport-final.md` (voir `obsidian-structure.md`).
 
 ---
 
@@ -132,11 +132,11 @@ Après avoir écrit le rapport, afficher dans le chat :
 🎯  Recommandations : [N] actions priorisées
 
 LIVRABLES (vault Obsidian) :
-📋 Guide d'entretien → projets/[nom]/02-guide-entretien.md
-📝 Entretiens        → projets/[nom]/03-entretiens/
-🧠 Synthèse          → projets/[nom]/04-synthese.md
-💡 Insights          → projets/[nom]/05-insights/
-📊 Rapport final     → projets/[nom]/06-rapport-final.md
+📋 Guide d'entretien → cerveau/01-Projets/[nom]/02-guide-entretien.md
+📝 Entretiens        → cerveau/01-Projets/[nom]/03-entretiens/
+🧠 Synthèse          → cerveau/01-Projets/[nom]/04-synthese.md
+💡 Insights          → cerveau/01-Projets/[nom]/05-insights/
+📊 Rapport final     → cerveau/01-Projets/[nom]/06-rapport-final.md
 
 PROCHAINE ÉTAPE RECOMMANDÉE :
 → [action design concrète basée sur l'insight P1]

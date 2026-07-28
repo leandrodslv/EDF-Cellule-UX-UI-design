@@ -1,8 +1,8 @@
 # Template — Analyse & Synthèse (Phase 3)
 
-Génère ces livrables après avoir lu toutes les notes de `projets/[nom-projet]/03-entretiens/`.
-Écris la synthèse dans `projets/[nom-projet]/04-synthese.md` et une note par
-insight dans `projets/[nom-projet]/05-insights/` (voir `obsidian-structure.md`).
+Génère ces livrables après avoir lu toutes les notes de `cerveau/01-Projets/[nom-projet]/03-entretiens/`.
+Écris la synthèse dans `cerveau/01-Projets/[nom-projet]/04-synthese.md` et une note par
+insight dans `cerveau/01-Projets/[nom-projet]/05-insights/` (voir `obsidian-structure.md`).
 
 ## Règle de volume
 - 1 entretien dans les notes → Livrables 1, 2, 3, 4, 7

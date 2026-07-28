@@ -27,8 +27,8 @@
 
       "survey": {
         "status": "done",
-        "excel_path": "./projets/eclipse/fichiers/eclipse-questionnaire.xlsx",
-        "analysis_path": "./projets/eclipse/fichiers/eclipse-analyse.xlsx",
+        "excel_path": "./cerveau/05-Archives/eclipse/fichiers/eclipse-questionnaire.xlsx",
+        "analysis_path": "./cerveau/05-Archives/eclipse/fichiers/eclipse-analyse.xlsx",
         "forms_url": "https://forms.microsoft.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__kNTKAVUOUNLRk9GRzA4WTc3OFpHQzVDTVJCWUxVTy4u",
         "responses_received": 200,
         "responses_target": 200,
@@ -38,18 +38,24 @@
       },
 
       "vault": {
-        "folder": "./projets/eclipse",
-        "note": "./projets/eclipse/Eclipse.md",
+        "folder": "./cerveau/05-Archives/eclipse",
+        "note": "./cerveau/05-Archives/eclipse/Eclipse.md",
+        "domaine": "./cerveau/02-Domaines/Tarification.md",
         "files": {
-          "plan": "./projets/eclipse/00-plan-recherche.md",
-          "questionnaire": "./projets/eclipse/01-questionnaire.md",
+          "plan": "./cerveau/05-Archives/eclipse/00-plan-recherche.md",
+          "questionnaire": "./cerveau/05-Archives/eclipse/01-questionnaire.md",
           "guide": null,
-          "notes_folder": "./projets/eclipse/03-entretiens",
+          "notes_folder": "./cerveau/05-Archives/eclipse/03-entretiens",
           "synthese": null,
-          "insights_folder": "./projets/eclipse/05-insights",
+          "insights_folder": "./cerveau/05-Archives/eclipse/05-insights",
           "rapport": null
         },
-        "migration_pending": "./projets/_migration-notion.md"
+        "connaissances_produites": [
+          "./cerveau/03-Connaissances/N001 · La valeur est reconnue mais l'offre n'est pas lisible.md",
+          "./cerveau/03-Connaissances/N002 · La nomenclature des paliers ne permet pas de les distinguer.md",
+          "./cerveau/03-Connaissances/N003 · L'engagement annuel sans alternative mensuelle freine la conversion.md"
+        ],
+        "migration_pending": "./cerveau/00-Inbox/_migration-notion.md"
       },
 
       "interviews": [

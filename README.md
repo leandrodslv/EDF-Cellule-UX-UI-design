@@ -133,7 +133,7 @@ ton compte Google — c'est gratuit et suffisant pour ECHO. Une clé API
 
 ### Étape 5 · Installer Obsidian
 
-ECHO écrit tous ses livrables dans un **vault Obsidian** : le dossier `projets/`
+ECHO écrit tous ses livrables dans un **vault Obsidian** : le dossier `cerveau/`
 de ton agent. Un vault n'est rien d'autre qu'un dossier de fichiers Markdown
 sur ton disque — Obsidian ne fait que le rendre navigable.
 
@@ -150,7 +150,7 @@ brew install --cask obsidian
 ```
 
 Puis, au lancement : **Ouvrir un dossier comme vault** → sélectionne le dossier
-`projets/` de ton agent.
+`cerveau/` de ton agent.
 
 > **Cette étape est facultative.** Sans Obsidian, ECHO fonctionne exactement
 > pareil et écrit les mêmes fichiers — tu les liras simplement dans un éditeur
@@ -185,7 +185,7 @@ Récapitulatif de contrôle :
 | Python | `python --version` | `3.10` ou plus |
 | openpyxl | `pip show openpyxl` | une fiche, pas une erreur |
 | L'agent | `claude` ou `gemini` | l'interface s'ouvre |
-| Le vault | ouvrir `projets/` dans Obsidian | `Index.md` et le projet Eclipse apparaissent |
+| Le vault | ouvrir `cerveau/` dans Obsidian | `Accueil.md` s'affiche avec le domaine Tarification |
 | ECHO | `/go` dans l'agent | le dashboard Eclipse s'affiche |
 
 ---
@@ -214,7 +214,7 @@ Récapitulatif de contrôle :
 | Lancement | `cd Agent_claude-code_Echo && claude` | `cd Agent_gemini_Echo && gemini` |
 
 Les deux agents sont **totalement étanches**. Chacun embarque ses propres
-`references/`, `scripts/`, `uxr-state.json` **et `projets/`**. Aucun fichier
+`references/`, `scripts/`, `uxr-state.json` **et `cerveau/`**. Aucun fichier
 n'est partagé, aucun chemin ne traverse d'un dossier à l'autre.
 
 Concrètement : tu peux copier `Agent_gemini_Echo/` seul sur une clé USB et le
@@ -237,10 +237,14 @@ EDF-Cellule-UX-UI-design/
 │   ├── .claude/commands/go.md
 │   ├── references/
 │   ├── scripts/
-│   ├── projets/                    ← SON vault Obsidian
-│   │   ├── Index.md
-│   │   ├── _templates/
-│   │   └── eclipse/
+│   ├── cerveau/                    ← SON second cerveau (vault Obsidian)
+│   │   ├── Accueil.md
+│   │   ├── 00-Inbox/
+│   │   ├── 01-Projets/
+│   │   ├── 02-Domaines/
+│   │   ├── 03-Connaissances/
+│   │   ├── 04-Ressources/
+│   │   └── 05-Archives/
 │   ├── uxr-state.json
 │   └── README.md                   ← setup détaillé
 │
@@ -251,10 +255,14 @@ EDF-Cellule-UX-UI-design/
     │   └── commands/go.toml
     ├── references/
     ├── scripts/
-    ├── projets/                    ← SON vault Obsidian
-    │   ├── Index.md
-    │   ├── _templates/
-    │   └── eclipse/
+    ├── cerveau/                    ← SON second cerveau (vault Obsidian)
+    │   ├── Accueil.md
+    │   ├── 00-Inbox/
+    │   ├── 01-Projets/
+    │   ├── 02-Domaines/
+    │   ├── 03-Connaissances/
+    │   ├── 04-Ressources/
+    │   └── 05-Archives/
     ├── uxr-state.json
     └── README.md                   ← setup détaillé
 ```
@@ -272,7 +280,16 @@ non plus.
 
 En pratique : **choisis un moteur par projet de recherche et tiens-t'y**.
 Si tu veux basculer un projet en cours d'un agent à l'autre, il faut copier
-à la main son dossier `projets/[nom]/` et son entrée dans `uxr-state.json`.
+à la main son dossier `cerveau/01-Projets/[nom]/` et son entrée dans
+`uxr-state.json`.
+
+**Et surtout** : les connaissances accumulées ne se partagent pas non plus.
+Ce que l'agent Gemini a appris reste invisible à l'agent Claude Code. Un
+second cerveau ne vaut que par ce qu'il accumule — le diviser en deux, c'est
+diviser la mémoire de la cellule.
+
+**Recommandation** : désigne un moteur principal pour la cellule et tiens-t'y.
+Garde le second pour l'expérimentation, pas pour les études qui comptent.
 
 Le projet Eclipse est présent dans les deux, à l'identique, comme exemple
 de référence.
@@ -297,8 +314,73 @@ Les deux doivent être **strictement identiques** — aucune sortie attendue.
 Depuis l'abandon de Notion, il n'y a plus aucune divergence légitime entre les
 deux agents sur ces dossiers : la moindre différence est une dérive à corriger.
 
-`projets/` en revanche **doit** diverger dès que tu travailles : chaque agent
+`cerveau/` en revanche **doit** diverger dès que tu travailles : chaque agent
 mène ses propres recherches. Ne cherche pas à les synchroniser.
+
+---
+
+## Le second cerveau
+
+ECHO ne se contente pas de mener des études : il **capitalise**.
+
+Le problème qu'on cherche à éviter est classique en cellule de recherche —
+chaque étude repart de zéro, les mêmes questions sont reposées, et les
+enseignements dorment dans des rapports que plus personne ne rouvre. Six mois
+après, quelqu'un redécouvre ce qui était déjà écrit.
+
+Le vault de chaque agent est donc organisé en **PARA** (Tiago Forte), avec une
+couche de connaissances inspirée de l'**Atomic Research** — chaque enseignement
+devient un *nugget* : une observation, ses preuves, sa taxonomie.
+
+```
+00-Inbox/          capture brute à trier
+01-Projets/        études en cours
+02-Domaines/       sujets permanents — une carte par domaine
+03-Connaissances/  ce que la cellule sait, indépendamment des projets
+04-Ressources/     méthodes, biais, benchmarks
+05-Archives/       études terminées
+```
+
+### Les deux couches
+
+| | Insight | Connaissance |
+|---|---|---|
+| Portée | Un projet | Transversale |
+| Durée de vie | Meurt avec le projet | S'enrichit à chaque étude |
+| Exemple | « Dans Eclipse, 6/8 ont buté sur la grille » | « Les utilisateurs ne distinguent pas les paliers » |
+
+Un projet se termine et s'archive. Une connaissance reste et se consolide.
+
+### Ce que ça change concrètement
+
+**Avant une étude** — ECHO lit le domaine concerné et te dit ce que la cellule
+sait déjà, avec quel niveau de confiance, et ce qui n'a jamais été exploré.
+Une étude qui redécouvre une connaissance établie est une étude gâchée : il
+doit te le dire *avant* qu'elle ne démarre.
+
+**Après une analyse** — chaque insight est distillé. S'il confirme une
+connaissance existante, celle-ci gagne en confiance. S'il la contredit, la
+connaissance passe en `a-reverifier` et la contradiction remonte au pilote —
+elle n'est jamais effacée en silence.
+
+**Au fil du temps** — une connaissance non reconfirmée depuis 12 mois est
+signalée comme potentiellement périmée. Un produit qui bouge invalide ce
+qu'on savait de lui.
+
+### Niveaux de confiance
+
+| Niveau | Critère |
+|---|---|
+| `faible` | 1 étude, ou moins de 3 participants |
+| `moyenne` | 1 étude solide, 5+ participants, ou 2 études convergentes |
+| `forte` | 2+ études indépendantes convergentes |
+| `etablie` | 3+ études, dont une avec un dispositif différent |
+
+Une connaissance issue d'un questionnaire déclaratif ne dépasse jamais
+`moyenne` tant qu'elle n'a pas été confirmée en entretien : déclarer n'est
+pas faire.
+
+La méthode complète est dans `references/second-cerveau.md` de chaque agent.
 
 ---
 
@@ -325,7 +407,7 @@ API, ni jeton d'accès, ni compte à provisionner. Écrire un livrable revient �
 
 ### Sauvegarde et partage
 
-Un vault local n'est pas sauvegardé. Place le dossier `projets/` dans ton
+Un vault local n'est pas sauvegardé. Place le dossier `cerveau/` dans ton
 **OneDrive ou SharePoint EDF** : tu obtiens la synchronisation, l'historique
 de versions et les politiques de rétention du tenant — sans qu'ECHO n'accède
 lui-même au réseau.
@@ -354,7 +436,7 @@ sécurité EDF.
 
 Le projet Eclipse a été produit dans Notion avant la bascule. Sa partie
 rédactionnelle doit encore être exportée : la marche à suivre est dans
-`projets/_migration-notion.md`, dans chaque agent.
+`cerveau/00-Inbox/_migration-notion.md`, dans chaque agent.
 
 Tant que ce n'est pas fait, ces données existent encore chez Notion.
 
@@ -365,7 +447,8 @@ Tant que ce n'est pas fait, ces données existent encore chez Notion.
 Projet UXR complet et terminé, mode `mixed` (questionnaire + entretiens) :
 200 réponses au questionnaire, 8 entretiens, analyse et rapport livrés.
 Sert d'exemple de bout en bout, présent à l'identique dans
-`Agent_claude-code_Echo/projets/eclipse/` et `Agent_gemini_Echo/projets/eclipse/`.
+`cerveau/05-Archives/eclipse/` de chaque agent — archivé, mais ce qu'il a
+appris vit dans `cerveau/03-Connaissances/`.
 
 Les données participants sont **anonymisées** (identifiants `#001` à `#200`,
 aucun nom, aucune donnée personnelle).

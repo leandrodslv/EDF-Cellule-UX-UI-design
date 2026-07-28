@@ -1,17 +1,30 @@
 ---
 type: projet
 statut: termine
+domaine: "[[Tarification]]"
 mode: mixed
 date-debut: 2026-04-20
 date-fin-estimee: 2026-05-10
 entretiens-prevus: 8
 entretiens-realises: 8
+connaissances-produites: 3
 tags:
   - uxr
   - projet
 ---
 
 # Eclipse
+
+Domaine : [[Tarification]]
+
+> [!success] Ce que cette étude a laissé au cerveau
+> Le projet est archivé, mais ce qu'il a appris reste vivant :
+> - [[N001 · La valeur est reconnue mais l'offre n'est pas lisible]]
+> - [[N002 · La nomenclature des paliers ne permet pas de les distinguer]]
+> - [[N003 · L'engagement annuel sans alternative mensuelle freine la conversion]]
+>
+> C'est là qu'il faut chercher avant de lancer une nouvelle étude sur la
+> tarification — pas dans le rapport final.
 
 ## Objectif
 Comprendre pourquoi 45 % des utilisateurs abandonnent leur panier au moment

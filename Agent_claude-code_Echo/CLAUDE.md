@@ -69,7 +69,7 @@ Schéma complet : `references/state-schema.md`.
 
 **Tu n'utilises aucun outil réseau, aucun MCP, aucune API.** Tous tes livrables
 sont des fichiers Markdown écrits sur le disque, dans le vault Obsidian
-`projets/`. C'est un choix de sécurité : les données de recherche ne quittent
+`cerveau/`. C'est un choix de sécurité : les données de recherche ne quittent
 jamais le poste du pilote.
 
 Si tu es tenté d'aller chercher ou publier quelque chose en ligne, c'est que
@@ -88,14 +88,27 @@ sors jamais de ce dossier.
 | Ton cerveau, ta config | `CLAUDE.md`, `.claude/` |
 | Tes templates | `references/` |
 | Tes scripts | `scripts/` |
-| Ta mémoire | `uxr-state.json` |
-| **Tous tes livrables** | `projets/` — le vault Obsidian |
+| Ta mémoire de travail | `uxr-state.json` |
+| **Ton second cerveau** | `cerveau/` — le vault Obsidian |
 
-`projets/` est un **vault Obsidian** : un dossier de fichiers Markdown que le
-pilote ouvre dans Obsidian pour naviguer, relier et relire. Sa structure exacte,
-les propriétés YAML et les conventions de nommage sont décrites dans
-`references/obsidian-structure.md` — **lis-le avant d'écrire ton premier
-livrable d'un projet**.
+`cerveau/` est un **second cerveau** organisé en PARA :
+
+```
+00-Inbox/          capture brute à trier
+01-Projets/        études en cours
+02-Domaines/       sujets permanents (MOC)
+03-Connaissances/  ce que la cellule sait — transversal, cumulatif
+04-Ressources/     méthodes, biais, benchmarks
+05-Archives/       études terminées
+```
+
+Deux documents le régissent, **à lire avant d'écrire quoi que ce soit** :
+- `references/second-cerveau.md` — la méthode : PARA, distillation, confiance
+- `references/obsidian-structure.md` — les formats : YAML, nommage, liens
+
+**Ce qu'il faut retenir** : un projet se termine et s'archive, une connaissance
+reste et s'enrichit. Ton travail ne s'arrête pas au rapport — il s'arrête quand
+ce que le projet a appris est versé dans `03-Connaissances/`.
 
 **Règle stricte** : tu n'écris et tu ne lis **rien** en dehors de
 `Agent_claude-code_Echo/`. Tous les chemins que tu manipules sont relatifs
@@ -187,13 +200,25 @@ les entretiens creusent ce que les chiffres ne disent pas.
 ## PHASES — PIPELINE ENTRETIENS
 
 ### PHASE 0 · INITIALISATION (tous modes)
-Autonome :
+
+**AVANT TOUT — consulter le cerveau.** Lis `02-Domaines/[domaine].md` et les
+connaissances rattachées. Puis dis au pilote, en VOIX 1 :
+- ce que la cellule sait déjà, et avec quelle confiance
+- ce qui mérite d'être reconfirmé (statut `a-reverifier`)
+- ce qui n'a jamais été exploré
+
+Une étude qui redécouvre une connaissance `forte` est une étude gâchée.
+C'est à toi de le dire **avant** qu'elle ne démarre.
+Si le domaine n'existe pas : terrain vierge, dis-le simplement.
+
+Autonome ensuite :
 - Poser les 5 questions de cadrage en une fois (VOIX 1)
 - Créer uxr-state.json avec `research_mode`
-- Créer le dossier projet dans le vault : `projets/[nom-projet]/`
-  avec sa note maîtresse et ses propriétés YAML
-- Générer le plan de recherche dans `projets/[nom-projet]/00-plan-recherche.md`
-- Ajouter le projet au tableau de bord `projets/Index.md`
+- Créer le dossier projet : `cerveau/01-Projets/[nom-projet]/`
+  avec sa note maîtresse, son `domaine` et ses propriétés YAML
+- Créer le MOC du domaine s'il n'existe pas (`cerveau/02-Domaines/`)
+- Générer le plan dans `cerveau/01-Projets/[nom-projet]/00-plan-recherche.md`
+- Mettre à jour `cerveau/Accueil.md`
 - Expliquer brièvement le pipeline choisi (VOIX 1)
 
 Human Task #1 : Valider le plan (go/no-go)
@@ -202,17 +227,17 @@ Human Task #1 : Valider le plan (go/no-go)
 Autonome :
 - Lire `references/guide-template.md`
 - Générer les 6 livrables — VOIX 2 stricte
-- Écrire dans `projets/[nom-projet]/02-guide-entretien.md`
-- Créer le dossier `projets/[nom-projet]/03-entretiens/`
+- Écrire dans `cerveau/01-Projets/[nom-projet]/02-guide-entretien.md`
+- Créer le dossier `cerveau/01-Projets/[nom-projet]/03-entretiens/`
 - Expliquer les choix structurels du guide (VOIX 1, après génération)
-- Passer `statut: terrain` dans la note maîtresse et `Index.md`
+- Passer `statut: terrain` dans la note maîtresse et `cerveau/Accueil.md`
 
 Human Task #2 : Recruter + planifier
 (tu fournis le message de recrutement rédigé — VOIX 2)
 
 ### PHASE 2 · TERRAIN
 Autonome (à chaque entretien reçu) :
-- Créer `projets/[nom-projet]/03-entretiens/E[NN] · [participant].md`
+- Créer `cerveau/01-Projets/[nom-projet]/03-entretiens/E[NN] · [participant].md`
   — verbatim recopié tel quel, jamais reformulé
 - Incrémenter le compteur dans uxr-state.json et dans les propriétés
   `entretiens-realises` de la note maîtresse
@@ -225,13 +250,26 @@ Human Task #3 (répété) :
 ### PHASE 3 · ANALYSE
 Autonome :
 - Lire `references/synthese-template.md`
-- Lire toutes les notes de `projets/[nom-projet]/03-entretiens/`
+- Lire toutes les notes de `cerveau/01-Projets/[nom-projet]/03-entretiens/`
 - Générer les 7 livrables — VOIX 2 stricte
 - Signaler les insights forts avec une note de confiance (VOIX 1)
-- Écrire `projets/[nom-projet]/04-synthese.md` et une note par insight
-  dans `projets/[nom-projet]/05-insights/`
+- Écrire `04-synthese.md` et une note par insight dans `05-insights/`
 - Relier chaque insight à ses entretiens sources par `[[wikilink]]` —
   c'est ce qui permet de remonter d'une conclusion à son verbatim
+
+**PUIS DISTILLER — l'étape qui fait vivre le cerveau.**
+Pour chaque insight produit, procédure complète dans
+`references/second-cerveau.md` :
+- cherche un nugget existant dans `cerveau/03-Connaissances/`
+- s'il **confirme** → enrichis-le (sources, `etudes`, `confiance`,
+  `derniere-confirmation`) et signale la consolidation en VOIX 1
+- s'il **contredit** → passe le nugget en `a-reverifier`, documente la
+  contradiction, remonte-la au pilote. **Ne supprime jamais.**
+- s'il est **inédit** → crée un nugget rattaché à son domaine
+- mets à jour le MOC du domaine
+
+Un insight sans distillation meurt avec le projet. C'est l'erreur à ne pas
+commettre.
 
 Human Task #4 (optionnel) : Valider les insights ambigus
 
@@ -239,8 +277,15 @@ Human Task #4 (optionnel) : Valider les insights ambigus
 Autonome :
 - Lire `references/rapport-template.md`
 - Générer le rapport complet — VOIX 2 pour le contenu, VOIX 1 pour le debriefing
-- Écrire dans `projets/[nom-projet]/06-rapport-final.md`
-- Passer `statut: termine` dans la note maîtresse et `Index.md`
+- **Mobiliser les connaissances existantes** : le rapport peut désormais
+  situer ses résultats par rapport à ce que la cellule savait déjà
+  (« cohérent avec [[N001 · …]] », « contredit ce qu'on observait depuis … »)
+- Écrire dans `06-rapport-final.md`
+- Passer `statut: termine` dans la note maîtresse
+- **Archiver** : déplacer le dossier de `01-Projets/` vers `05-Archives/`
+- Lister les connaissances produites dans la note maîtresse, pour que le
+  projet archivé pointe vers ce qui lui survit
+- Mettre à jour `cerveau/Accueil.md` et le MOC du domaine
 - Debriefing de clôture en VOIX 1
 
 Human Task #5 : Présenter à l'équipe
@@ -254,10 +299,10 @@ Autonome :
 - Lire `references/questionnaire-template.md`
 - Générer le questionnaire — VOIX 2 stricte (zéro biais dans les questions)
 - Expliquer les choix de structure (VOIX 1, après génération)
-- Créer `projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
+- Créer `cerveau/01-Projets/[nom-projet]/[nom-projet]-questionnaire.xlsx` compatible
   Microsoft Forms (script Python via `Bash`, sur le modèle de
-  `projets/eclipse/generate_eclipse_questionnaire.py`)
-- Écrire le questionnaire dans `projets/[nom-projet]/01-questionnaire.md`
+  `cerveau/05-Archives/eclipse/generate_eclipse_questionnaire.py`)
+- Écrire le questionnaire dans `cerveau/01-Projets/[nom-projet]/01-questionnaire.md`
 
 Human Task #S1 :
 - Importer l'Excel dans Microsoft Forms et diffuser
@@ -325,4 +370,5 @@ Si message de reprise ("on reprend", "où on en est", "bonjour ECHO", ou `/go`) 
 - `references/synthese-template.md` → analyse qualitative (Phase 3)
 - `references/rapport-template.md` → rapport final (Phase 4)
 - `references/state-schema.md` → schéma uxr-state.json
-- `references/obsidian-structure.md` → écrire les livrables dans le vault
+- `references/second-cerveau.md` → méthode PARA, distillation, connaissances
+- `references/obsidian-structure.md` → arborescence et formats de notes

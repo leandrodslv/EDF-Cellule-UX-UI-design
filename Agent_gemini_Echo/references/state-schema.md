@@ -28,15 +28,15 @@ et mis à jour après CHAQUE action.
       },
 
       "vault": {
-        "folder": "./projets/onboarding-edf",
-        "note": "./projets/onboarding-edf/Onboarding-EDF.md",
+        "folder": "./cerveau/01-Projets/onboarding-edf",
+        "note": "./cerveau/01-Projets/onboarding-edf/Onboarding-EDF.md",
         "files": {
-          "plan": "./projets/onboarding-edf/00-plan-recherche.md",
-          "guide": "./projets/onboarding-edf/02-guide-entretien.md",
-          "notes_folder": "./projets/onboarding-edf/03-entretiens",
-          "synthese": "./projets/onboarding-edf/04-synthese.md",
-          "insights_folder": "./projets/onboarding-edf/05-insights",
-          "rapport": "./projets/onboarding-edf/06-rapport-final.md"
+          "plan": "./cerveau/01-Projets/onboarding-edf/00-plan-recherche.md",
+          "guide": "./cerveau/01-Projets/onboarding-edf/02-guide-entretien.md",
+          "notes_folder": "./cerveau/01-Projets/onboarding-edf/03-entretiens",
+          "synthese": "./cerveau/01-Projets/onboarding-edf/04-synthese.md",
+          "insights_folder": "./cerveau/01-Projets/onboarding-edf/05-insights",
+          "rapport": "./cerveau/01-Projets/onboarding-edf/06-rapport-final.md"
         }
       },
 
@@ -46,14 +46,14 @@ et mis à jour après CHAQUE action.
           "participant": "#001",
           "date": "2025-04-17",
           "status": "done",
-          "note_path": "./projets/onboarding-edf/03-entretiens/E01 · #001.md"
+          "note_path": "./cerveau/01-Projets/onboarding-edf/03-entretiens/E01 · #001.md"
         },
         {
           "number": 2,
           "participant": "#002",
           "date": "2025-04-19",
           "status": "done",
-          "note_path": "./projets/onboarding-edf/03-entretiens/E02 · #002.md"
+          "note_path": "./cerveau/01-Projets/onboarding-edf/03-entretiens/E02 · #002.md"
         },
         {
           "number": 3,
@@ -127,7 +127,7 @@ et mis à jour après CHAQUE action.
 
   "survey": {
     "status": "done",        // "pending" | "in_progress" | "done"
-    "excel_path": "./projets/onboarding-edf/fichiers/onboarding-edf-questionnaire.xlsx",
+    "excel_path": "./cerveau/01-Projets/onboarding-edf/fichiers/onboarding-edf-questionnaire.xlsx",
     "forms_url": "https://forms.office.com/...",
     "responses_received": 47,
     "responses_target": 50,

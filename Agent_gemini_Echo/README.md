@@ -22,7 +22,7 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
 4. Gemini lit automatiquement `GEMINI.md` au démarrage — ECHO est en place
 
 > Cet agent est autonome : il ne lit et n'écrit **rien** en dehors de
-> `Agent_gemini_Echo/`. Ses livrables vont dans `projets/[nom-projet]/`.
+> `Agent_gemini_Echo/`. Ses livrables vont dans son second cerveau `cerveau/`.
 > Tu peux copier ce seul dossier ailleurs, il fonctionnera tel quel.
 
 ---
@@ -35,14 +35,14 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
   pip install openpyxl
   ```
 - Le fichier `uxr-state.json` présent (déjà inclus)
-- **Obsidian** (facultatif) — pour naviguer dans le vault `projets/`.
+- **Obsidian** (facultatif) — pour naviguer dans le vault `cerveau/`.
   Sans lui, ECHO écrit exactement les mêmes fichiers, simplement moins
   agréables à parcourir.
 
 ### Aucun connecteur réseau
 
 Cet agent n'utilise **aucun MCP, aucune API, aucun jeton d'accès**. Tous les
-livrables sont des fichiers Markdown écrits sur ton disque, dans `projets/`.
+livrables sont des fichiers Markdown écrits sur ton disque, dans `cerveau/`.
 Rien n'est envoyé nulle part — c'est un choix de sécurité assumé.
 
 ---
@@ -66,7 +66,7 @@ Nouveau projet UXR : [description en 1-2 phrases]
 ```
 
 ECHO te posera les 5 questions de cadrage en une fois, créera le dossier du
-projet dans le vault `projets/`, et te donnera le Human Task #1
+projet dans le vault `cerveau/`, et te donnera le Human Task #1
 (valider le plan).
 
 ---
@@ -100,7 +100,7 @@ J'ai fait l'entretien avec Sarah, voici les notes :
 [notes brutes]
 ```
 
-ECHO crée la note d'entretien dans `projets/[projet]/03-entretiens/`, recopie
+ECHO crée la note d'entretien dans `cerveau/01-Projets/[projet]/03-entretiens/`, recopie
 le verbatim sans le retoucher, met à jour le compteur, et te dit quoi faire
 ensuite.
 
@@ -119,20 +119,20 @@ Agent_gemini_Echo/                     ← lance `gemini` DEPUIS ce dossier
 │       └── go.toml                    ← commande /go
 ├── scripts/
 │   └── generate_analysis.py           ← génération des analyses .xlsx
-├── projets/                           ← TON VAULT OBSIDIAN
-│   ├── Index.md                       ← tableau de bord des projets
+├── cerveau/                           ← TON SECOND CERVEAU (vault Obsidian)
+│   ├── Accueil.md                     ← point d'entrée du vault
 │   ├── _templates/                    ← modèles de notes
-│   ├── _migration-notion.md           ← reste à faire sur Eclipse
-│   └── eclipse/
-│       ├── Eclipse.md                 ← note maîtresse (propriétés YAML)
-│       ├── 00-plan-recherche.md
-│       ├── 01-questionnaire.md
-│       ├── 03-entretiens/
-│       ├── 05-insights/
-│       └── fichiers/                  ← pièces jointes .xlsx
+│   ├── 00-Inbox/                      ← capture brute à trier
+│   ├── 01-Projets/                    ← études en cours
+│   ├── 02-Domaines/                   ← sujets permanents (MOC)
+│   ├── 03-Connaissances/              ← ce que la cellule sait
+│   ├── 04-Ressources/                 ← méthodes, biais, benchmarks
+│   └── 05-Archives/                   ← études terminées
+│       └── eclipse/
 └── references/
     ├── state-schema.md                ← schéma JSON de l'état
-    ├── obsidian-structure.md          ← comment écrire dans le vault
+    ├── second-cerveau.md              ← méthode PARA et distillation
+    ├── obsidian-structure.md          ← arborescence et formats de notes
     ├── guide-template.md              ← template Phase 1 (préparation)
     ├── questionnaire-template.md      ← template Phase S1 (questionnaire)
     ├── analyse-s2.md                  ← template Phase S2 (analyse réponses)
@@ -141,7 +141,7 @@ Agent_gemini_Echo/                     ← lance `gemini` DEPUIS ce dossier
 ```
 
 Pour ouvrir le vault : Obsidian → **Ouvrir un dossier comme vault** →
-sélectionne `projets/`.
+sélectionne `cerveau/`.
 
 ---
 

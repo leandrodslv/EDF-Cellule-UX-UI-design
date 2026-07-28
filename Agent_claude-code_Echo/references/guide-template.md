@@ -1,7 +1,7 @@
 # Template — Guide d'Entretien (Phase 1)
 
 Génère ces 6 livrables dans cet ordre exact.
-Écris-les dans `projets/[nom-projet]/02-guide-entretien.md` (voir `obsidian-structure.md`).
+Écris-les dans `cerveau/01-Projets/[nom-projet]/02-guide-entretien.md` (voir `obsidian-structure.md`).
 
 ## LIVRABLE 1 — CADRAGE RECHERCHE
 
