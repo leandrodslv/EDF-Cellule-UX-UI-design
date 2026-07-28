@@ -1,7 +1,7 @@
-# ECHO — Agent UXR · Setup & Usage (Gemini CLI)
+# ECHO — Agent UXR · Setup & Usage (Claude Code)
 
 Agent orchestrateur de recherche utilisateur. Pilote de A à Z le cycle de vie
-d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
+d'un projet UXR qualitative et quantitative. Tourne dans **Claude Code**.
 
 ---
 
@@ -12,44 +12,36 @@ d'un projet UXR qualitative et quantitative. Tourne dans **Gemini CLI**.
 > il couvre Windows et macOS étape par étape. La procédure ci-dessous suppose
 > que les outils de base sont déjà en place.
 
-1. Installe Gemini CLI :
+1. Installe Claude Code :
    ```
-   npm install -g @google/gemini-cli
+   npm install -g @anthropic-ai/claude-code
    ```
-2. Ouvre un terminal **dans ce dossier `gemini/`** — c'est important, Gemini CLI
-   cherche `GEMINI.md` et `.gemini/` à partir du dossier de lancement
-3. Lance `gemini`
-4. Gemini lit automatiquement `GEMINI.md` au démarrage — ECHO est en place
+2. Ouvre un terminal **dans ce dossier `Agent_claude-code_Echo/`** — c'est
+   important, Claude Code cherche `CLAUDE.md` et `.claude/` à partir du dossier
+   de lancement
+3. Lance `claude`
+4. Claude lit automatiquement `CLAUDE.md` au démarrage — ECHO est en place
 
-> Cet agent est autonome : il ne lit et n'écrit **rien** en dehors de `gemini/`.
-> Ses livrables vont dans `projets/[nom-projet]/`. Tu peux copier ce seul
-> dossier ailleurs, il fonctionnera tel quel.
+> Cet agent est autonome : il ne lit et n'écrit **rien** en dehors de
+> `Agent_claude-code_Echo/`. Ses livrables vont dans `projets/[nom-projet]/`.
+> Tu peux copier ce seul dossier ailleurs, il fonctionnera tel quel.
 
 ---
 
 ## Prérequis
 
-- **Node.js 20+** (requis par Gemini CLI)
-- **Notion MCP** déclaré dans `.gemini/settings.json` (déjà configuré)
-  → au premier lancement, autorise-le avec `/mcp auth notion`
-  → vérifie la connexion avec `/mcp list`
+- **Node.js 18+**
+- **Notion MCP** connecté (`https://mcp.notion.com/mcp`)
+  → ajoute-le avec :
+  ```
+  claude mcp add --transport http notion https://mcp.notion.com/mcp
+  ```
+  → vérifie la connexion avec `/mcp`
 - **Python + openpyxl** pour la génération des `.xlsx` (Phase S1) :
   ```
   pip install openpyxl
   ```
 - Le fichier `uxr-state.json` présent (déjà inclus)
-
-### Alternative Notion en local (si le MCP distant ne convient pas)
-
-Remplace le bloc `notion` de `.gemini/settings.json` par :
-
-```json
-"notion": {
-  "command": "npx",
-  "args": ["-y", "@notionhq/notion-mcp-server"],
-  "env": { "NOTION_TOKEN": "$NOTION_TOKEN" }
-}
-```
 
 ---
 
@@ -112,14 +104,13 @@ ECHO stocke dans Notion, met à jour le compteur, et te dit quoi faire ensuite.
 ## Fichiers
 
 ```
-gemini/                                ← lance `gemini` DEPUIS ce dossier
-├── GEMINI.md                          ← cerveau de l'agent (lu automatiquement)
+Agent_claude-code_Echo/                ← lance `claude` DEPUIS ce dossier
+├── CLAUDE.md                          ← cerveau de l'agent (lu automatiquement)
 ├── uxr-state.json                     ← mémoire persistante des projets
 ├── README.md                          ← ce fichier
-├── .gemini/
-│   ├── settings.json                  ← config MCP Notion + contexte
+├── .claude/
 │   └── commands/
-│       └── go.toml                    ← commande /go
+│       └── go.md                      ← commande /go
 ├── scripts/
 │   └── generate_analysis.py           ← génération des analyses .xlsx
 ├── projets/                           ← TES livrables (propres à cet agent)
@@ -140,18 +131,16 @@ gemini/                                ← lance `gemini` DEPUIS ce dossier
 
 ---
 
-## Commandes Gemini CLI utiles
+## Commandes Claude Code utiles
 
 | Commande | Effet |
 |----------|-------|
 | `/go` | Lance ou reprend la session ECHO |
-| `/mcp list` | Vérifie que le serveur Notion est connecté |
-| `/mcp auth notion` | Autorise le MCP Notion (OAuth) |
-| `/memory show` | Affiche le contexte `GEMINI.md` chargé |
-| `/memory refresh` | Recharge `GEMINI.md` après édition |
-| `/chat save <nom>` | Sauvegarde la conversation en cours |
-| `/chat resume <nom>` | Reprend une conversation sauvegardée |
-| `/stats` | Consommation de tokens de la session |
+| `/mcp` | Vérifie / autorise le serveur Notion |
+| `/memory` | Édite le `CLAUDE.md` chargé |
+| `/context` | Visualise l'occupation du contexte |
+| `/resume` | Reprend une conversation précédente |
+| `/cost` | Consommation de la session |
 
 ---
 

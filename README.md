@@ -103,7 +103,7 @@ lequel la cellule a déjà un compte.
 
 ```bash
 npm install -g @anthropic-ai/claude-code
-cd claude-code
+cd Agent_claude-code_Echo
 claude
 ```
 
@@ -114,7 +114,7 @@ Il faut un **compte Claude** (Pro, Max ou Team) ou une clé API Anthropic.
 
 ```bash
 npm install -g @google/gemini-cli
-cd gemini
+cd Agent_gemini_Echo
 gemini
 ```
 
@@ -123,7 +123,8 @@ ton compte Google — c'est gratuit et suffisant pour ECHO. Une clé API
 [Google AI Studio](https://aistudio.google.com/apikey) fonctionne aussi.
 
 > 🔴 **L'erreur à ne pas faire** — lance toujours le CLI **depuis le dossier
-> de l'agent** (`claude-code/` ou `gemini/`), jamais depuis la racine du dépôt.
+> de l'agent** (`Agent_claude-code_Echo/` ou `Agent_gemini_Echo/`), jamais
+> depuis la racine du dépôt.
 > Les deux outils cherchent leur fichier de contexte à partir du dossier
 > courant : lancés d'ailleurs, tu obtiendras un assistant générique et **ECHO
 > ne se réveillera pas**.
@@ -136,7 +137,7 @@ ECHO écrit tous ses livrables dans Notion. Sans cette étape il fonctionne
 quand même, mais il produira des fichiers Markdown en local au lieu d'alimenter
 l'espace de travail de la cellule.
 
-**Côté Claude Code** — une seule fois, depuis `claude-code/` :
+**Côté Claude Code** — une seule fois, depuis `Agent_claude-code_Echo/` :
 
 ```bash
 claude mcp add --transport http notion https://mcp.notion.com/mcp
@@ -184,7 +185,7 @@ Récapitulatif de contrôle :
 | `command not found` après une install | Le terminal n'a pas rechargé le PATH | Ferme et rouvre le terminal |
 | `python` ouvre le Microsoft Store | Alias d'exécution Windows | Voir le piège de l'étape 1 |
 | `EACCES` / permission refusée sur `npm -g` | Droits d'écriture globaux | macOS/Linux : préfixe par `sudo`. Windows : ouvre le terminal en administrateur |
-| ECHO répond comme un assistant générique | Lancé depuis le mauvais dossier | `cd claude-code` ou `cd gemini`, puis relance |
+| ECHO répond comme un assistant générique | Lancé depuis le mauvais dossier | `cd Agent_claude-code_Echo` ou `cd Agent_gemini_Echo`, puis relance |
 | Les outils `notion-*` sont absents | MCP non autorisé | Refais l'étape 5 |
 | `git clone` refusé | Pas d'accès au dépôt privé | Demande à être ajouté comme collaborateur |
 
@@ -194,18 +195,18 @@ Récapitulatif de contrôle :
 
 | | **Claude Code** | **Gemini CLI** |
 |---|---|---|
-| Dossier | [`claude-code/`](claude-code/) | [`gemini/`](gemini/) |
+| Dossier | [`Agent_claude-code_Echo/`](Agent_claude-code_Echo/) | [`Agent_gemini_Echo/`](Agent_gemini_Echo/) |
 | Cerveau | `CLAUDE.md` | `GEMINI.md` |
 | Commande | `.claude/commands/go.md` | `.gemini/commands/go.toml` |
 | Config MCP | `claude mcp add …` | `.gemini/settings.json` |
-| Lancement | `cd claude-code && claude` | `cd gemini && gemini` |
+| Lancement | `cd Agent_claude-code_Echo && claude` | `cd Agent_gemini_Echo && gemini` |
 
 Les deux agents sont **totalement étanches**. Chacun embarque ses propres
 `references/`, `scripts/`, `uxr-state.json` **et `projets/`**. Aucun fichier
 n'est partagé, aucun chemin ne traverse d'un dossier à l'autre.
 
-Concrètement : tu peux copier `gemini/` seul sur une clé USB et le donner à un
-collègue — il fonctionnera tel quel, sans le reste du dépôt.
+Concrètement : tu peux copier `Agent_gemini_Echo/` seul sur une clé USB et le
+donner à un collègue — il fonctionnera tel quel, sans le reste du dépôt.
 
 > **Important** — lance toujours le CLI *depuis le dossier de l'agent*, jamais
 > depuis la racine. Les deux outils cherchent leur fichier de contexte à partir
@@ -217,29 +218,29 @@ collègue — il fonctionnera tel quel, sans le reste du dépôt.
 
 ```
 EDF-Cellule-UX-UI-design/
-├── README.md                      ← ce fichier
+├── README.md                       ← ce fichier
 │
-├── claude-code/                   ← agent ECHO · moteur Claude Code
+├── Agent_claude-code_Echo/         ← agent ECHO · moteur Claude Code
 │   ├── CLAUDE.md
 │   ├── .claude/commands/go.md
 │   ├── references/
 │   ├── scripts/
-│   ├── projets/                   ← SES livrables
+│   ├── projets/                    ← SES livrables
 │   │   └── eclipse/
 │   ├── uxr-state.json
-│   └── README.md                  ← setup détaillé
+│   └── README.md                   ← setup détaillé
 │
-└── gemini/                        ← agent ECHO · moteur Gemini CLI
+└── Agent_gemini_Echo/              ← agent ECHO · moteur Gemini CLI
     ├── GEMINI.md
     ├── .gemini/
     │   ├── settings.json
     │   └── commands/go.toml
     ├── references/
     ├── scripts/
-    ├── projets/                   ← SES livrables
+    ├── projets/                    ← SES livrables
     │   └── eclipse/
     ├── uxr-state.json
-    └── README.md                  ← setup détaillé
+    └── README.md                   ← setup détaillé
 ```
 
 Rien à la racine à part ce README : tout le contenu vit dans l'un ou l'autre
@@ -271,8 +272,8 @@ dossiers.**
 Vérifier qu'ils n'ont pas divergé :
 
 ```bash
-diff -r claude-code/references gemini/references
-diff -r claude-code/scripts    gemini/scripts
+diff -r Agent_claude-code_Echo/references Agent_gemini_Echo/references
+diff -r Agent_claude-code_Echo/scripts    Agent_gemini_Echo/scripts
 ```
 
 `scripts/` doit être strictement identique — aucune sortie attendue.
@@ -292,7 +293,7 @@ mène ses propres recherches. Ne cherche pas à les synchroniser.
 Projet UXR complet et terminé, mode `mixed` (questionnaire + entretiens) :
 200 réponses au questionnaire, 8 entretiens, analyse et rapport livrés.
 Sert d'exemple de bout en bout, présent à l'identique dans
-`claude-code/projets/eclipse/` et `gemini/projets/eclipse/`.
+`Agent_claude-code_Echo/projets/eclipse/` et `Agent_gemini_Echo/projets/eclipse/`.
 
 Les données participants sont **anonymisées** (identifiants `#001` à `#200`,
 aucun nom, aucune donnée personnelle).
